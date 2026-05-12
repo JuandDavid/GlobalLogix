@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load currency_filters %}
+
+{% block title %}Detalle de {{ country.name }} | GlobalLogix{% endblock %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="https://atlas.microsoft.com/sdk/javascript/mapcontrol/3/atlas.min.css">
+{% endblock %}
+
+{% block content %}
+
+<section class="country-detail-header">
+    <div>
+        <a href="{% url 'dashboard_home' %}" class="back-link">
+            ← Volver al dashboard
+        </a>
+
+        <span class="section-label">Detalle por país</span>
+
+        <h2>{{ country.name }}</h2>
+
+        <p>
+            Análisis individual de ventas para el país seleccionado desde el mapa 3D.
+        </p>
+    </div>
+
+    <div class="header-status">
+        <span class="status-dot"></span>
+        {{ country.code_iso }} · {{ country.continent }}
+    </div>
+</section>
+
+<section class="summary-grid">
+    <article class="summary-card">
+        <span class="summary-label">Ventas totales</span>
+        <strong>{{ total_sales|cop_currency }}</strong>
+        <p>Valor acumulado vendido en {{ country.name }}.</p>
+    </article>
+
+    <article class="summary-card">
+        <span class="summary-label">Órdenes</span>
+        <strong>{{ total_orders }}</strong>
+        <p>Cantidad de ventas registradas para este país.</p>
+    </article>
+
+    <article class="summary-card">
+        <span class="summary-label">Ticket promedio</span>
+        <strong>{{ average_ticket|cop_currency }}</strong>
+        <p>Valor promedio generado por cada orden.</p>
+    </article>
+
+    <article class="summary-card">
+        <span class="summary-label">Crecimiento</span>
+        <strong class="{% if country_growth >= 0 %}growth-text-positive{% else %}growth-text-negative{% endif %}">
+            {% if country_growth >= 0 %}+{% endif %}{{ country_growth }}%
+        </strong>
+        <p>Comparación entre los últimos 6 meses y los 6 meses anteriores.</p>
+    </article>
+</section>
+
+<section class="panel analysis-panel" style="margin-bottom: 24px;">
+    <div class="panel-header">
+        <div>
+            <span class="section-label">Interpretación</span>
+            <h3>Análisis comercial automático</h3>
+        </div>
+
+        <span class="panel-badge">Insight</span>
+    </div>
+
+    <p style="
+        color: var(--text-muted);
+        line-height: 1.8;
+        font-size: 1rem;
+        max-width: 1150px;
+    ">
+        {{ country_analysis }}
+    </p>
+</section>
+
+<section class="dashboard-grid">
+
+    <article class="panel chart-panel detail-chart-panel">
+        <div class="panel-header">
+            <div>
+                <span class="section-label">Chart.js</span>
+                <h3>Ventas mensuales</h3>
+            </div>
+            <span class="panel-badge">Detalle</span>
+        </div>
+
+        <div class="country-chart-container">
+            <canvas id="countrySalesChart" data-country-code="{{ country.code_iso }}"></canvas>
+        </div>
+    </article>
+
+    <article class="panel">
+        <div class="panel-header">
+            <div>
+                <span class="section-label">Resumen</span>
+                <h3>Información del país</h3>
+            </div>
+            <span class="panel-badge">{{ country.code_iso }}</span>
+        </div>
+
+        <div class="country-info-list">
+            <div class="country-info-item">
+                <span>País</span>
+                <strong>{{ country.name }}</strong>
+            </div>
+
+            <div class="country-info-item">
+                <span>Código ISO</span>
+                <strong>{{ country.code_iso }}</strong>
+            </div>
+
+            <div class="country-info-item">
+                <span>Continente</span>
+                <strong>{{ country.continent }}</strong>
+            </div>
+
+            <div class="country-info-item">
+                <span>Ventas totales</span>
+                <strong>{{ total_sales|cop_currency }}</strong>
+            </div>
+
+            <div class="country-info-item">
+                <span>Órdenes registradas</span>
+                <strong>{{ total_orders }}</strong>
+            </div>
+
+            <div class="country-info-item">
+                <span>Unidades vendidas</span>
+                <strong>{{ total_quantity }}</strong>
+            </div>
+
+            <div class="country-info-item">
+                <span>Producto líder</span>
+                <strong>{{ top_product }}</strong>
+            </div>
+
+            <div class="country-info-item">
+                <span>Ticket promedio</span>
+                <strong>{{ average_ticket|cop_currency }}</strong>
+            </div>
+
+            <div class="country-info-item">
+                <span>Crecimiento</span>
+                <strong class="{% if country_growth >= 0 %}growth-text-positive{% else %}growth-text-negative{% endif %}">
+                    {% if country_growth >= 0 %}+{% endif %}{{ country_growth }}%
+                </strong>
+            </div>
+        </div>
+    </article>
+
+</section>
+
+<section class="panel country-map-detail-panel" style="margin-top: 24px;">
+    <div class="panel-header">
+        <div>
+            <span class="section-label">Azure Maps 3D</span>
+            <h3>Ubicación comercial del país</h3>
+        </div>
+
+        <span class="panel-badge">{{ country.code_iso }}</span>
+    </div>
+
+    <div
+        id="countryDetailMap"
+        data-country-name="{{ country.name }}"
+        data-country-code="{{ country.code_iso }}"
+        data-country-continent="{{ country.continent }}"
+        data-country-latitude="{{ country.latitude }}"
+        data-country-longitude="{{ country.longitude }}"
+        data-total-sales="{{ total_sales }}"
+        data-total-orders="{{ total_orders }}"
+        data-growth="{{ country_growth }}"
+        style="
+            width: 100%;
+            height: 420px;
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1px solid rgba(56, 189, 248, 0.24);
+            background: #020617;
+            margin-top: 18px;
+        "
+    ></div>
+</section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+    <script>
+        window.AZURE_MAPS_KEY = "{{ azure_maps_key|default:'' }}";
+    </script>
+
+    <script src="https://atlas.microsoft.com/sdk/javascript/mapcontrol/3/atlas.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="{% static 'js/charts.js' %}?v=11"></script>
+
+    <script src="{% static 'js/country_map.js' %}?v=14"></script>
+{% endblock %}

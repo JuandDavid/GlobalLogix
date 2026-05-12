@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dashboard Principal | GlobalLogix{% endblock %}
+
+{% block extra_head %}
+    <!-- Azure Maps CSS -->
+    <link rel="stylesheet" href="https://atlas.microsoft.com/sdk/javascript/mapcontrol/3/atlas.min.css">
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-header">
+    <div>
+        <span class="section-label">Panel principal</span>
+        <h2>Ventas internacionales por país</h2>
+        <p>
+            Visualización académica de ventas globales usando Django, datos mockeados,
+            endpoints JSON, Azure Maps y Chart.js.
+        </p>
+    </div>
+
+    <div class="header-status">
+        <span class="status-dot"></span>
+        Datos mockeados activos
+    </div>
+</section>
+
+<section class="summary-grid">
+    <article class="summary-card">
+        <span class="summary-label">Países analizados</span>
+        <strong id="totalCountries">{{ total_countries }}</strong>
+        <p>Mercados internacionales registrados</p>
+    </article>
+
+    <article class="summary-card">
+        <span class="summary-label">Productos</span>
+        <strong id="totalProducts">{{ total_products }}</strong>
+        <p>Catálogo usado para las ventas</p>
+    </article>
+
+    <article class="summary-card">
+        <span class="summary-label">Ventas simuladas</span>
+        <strong id="totalSales">{{ total_sales_records }}</strong>
+        <p>Registros cargados desde fixture</p>
+    </article>
+
+    <article class="summary-card">
+        <span class="summary-label">Periodo</span>
+        <strong>12 meses</strong>
+        <p>Datos distribuidos en el último año</p>
+    </article>
+</section>
+
+<section class="dashboard-grid">
+
+    <article class="panel map-panel">
+        <div class="panel-header">
+            <div>
+                <span class="section-label">Mapa 3D</span>
+                <h3>Actividad comercial global</h3>
+            </div>
+            <span class="panel-badge">Azure Maps</span>
+        </div>
+
+        <div id="map" class="map-container"></div>
+
+        <div class="map-legend">
+            <div>
+                <span class="legend-dot positive"></span>
+                Crecimiento positivo
+            </div>
+            <div>
+                <span class="legend-dot negative"></span>
+                Crecimiento negativo
+            </div>
+            <div>
+                <span class="legend-dot neutral"></span>
+                Mayor altura = más ventas
+            </div>
+        </div>
+    </article>
+
+    <article class="panel chart-panel">
+        <div class="panel-header">
+            <div>
+                <span class="section-label">Indicadores</span>
+                <h3>Ventas por país</h3>
+            </div>
+            <span class="panel-badge">Chart.js</span>
+        </div>
+
+        <div class="dashboard-chart-container">
+            <canvas id="salesChart"></canvas>
+        </div>
+    </article>
+
+</section>
+
+<section class="info-panel">
+    <div>
+        <span class="section-label">Flujo del sistema</span>
+        <h3>Arquitectura actual del proyecto</h3>
+    </div>
+
+    <div class="flow-grid">
+        <div class="flow-item">
+            <strong>1</strong>
+            <p>Django maneja las vistas con templates HTML.</p>
+        </div>
+
+        <div class="flow-item">
+            <strong>2</strong>
+            <p>SQLite almacena países, productos y ventas mockeadas.</p>
+        </div>
+
+        <div class="flow-item">
+            <strong>3</strong>
+            <p>Los endpoints JSON entregan datos para mapa y gráficas.</p>
+        </div>
+
+        <div class="flow-item">
+            <strong>4</strong>
+            <p>Azure Maps y Chart.js visualizan la información.</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+    <script>
+        window.AZURE_MAPS_KEY = "{{ azure_maps_key }}";
+    </script>
+
+    <!-- Azure Maps JS -->
+    <script src="https://atlas.microsoft.com/sdk/javascript/mapcontrol/3/atlas.min.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- JS propio -->
+    <script src="{% static 'js/map3d.js' %}?v=31"></script>
+    <script src="{% static 'js/charts.js' %}?v=30"></script>
+{% endblock %}

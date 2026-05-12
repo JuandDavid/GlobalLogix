@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}GlobalLogix Dashboard{% endblock %}</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Estilos propios -->
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}?v=104">
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+    <header class="top-navbar">
+        <div class="navbar-brand">
+            <div class="brand-icon">GL</div>
+            <div>
+                <h1>GlobalLogix</h1>
+                <p>Dashboard de logística internacional</p>
+            </div>
+        </div>
+
+        <nav class="navbar-links">
+            <a href="{% url 'dashboard_home' %}">Dashboard</a>
+            <a href="/admin/">Admin</a>
+        </nav>
+    </header>
+
+    <main class="page-container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

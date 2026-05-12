@@ -1,0 +1,2557 @@
+[
+    {
+        "model": "logistics.country",
+        "pk": 1,
+        "fields": {
+            "name": "Colombia",
+            "code_iso": "CO",
+            "continent": "América del Sur",
+            "latitude": 4.5709,
+            "longitude": -74.2973
+        }
+    },
+    {
+        "model": "logistics.country",
+        "pk": 2,
+        "fields": {
+            "name": "México",
+            "code_iso": "MX",
+            "continent": "América del Norte",
+            "latitude": 23.6345,
+            "longitude": -102.5528
+        }
+    },
+    {
+        "model": "logistics.country",
+        "pk": 3,
+        "fields": {
+            "name": "Brasil",
+            "code_iso": "BR",
+            "continent": "América del Sur",
+            "latitude": -14.235,
+            "longitude": -51.9253
+        }
+    },
+    {
+        "model": "logistics.country",
+        "pk": 4,
+        "fields": {
+            "name": "España",
+            "code_iso": "ES",
+            "continent": "Europa",
+            "latitude": 40.4637,
+            "longitude": -3.7492
+        }
+    },
+    {
+        "model": "logistics.country",
+        "pk": 5,
+        "fields": {
+            "name": "Estados Unidos",
+            "code_iso": "US",
+            "continent": "América del Norte",
+            "latitude": 37.0902,
+            "longitude": -95.7129
+        }
+    },
+    {
+        "model": "logistics.country",
+        "pk": 6,
+        "fields": {
+            "name": "Alemania",
+            "code_iso": "DE",
+            "continent": "Europa",
+            "latitude": 51.1657,
+            "longitude": 10.4515
+        }
+    },
+    {
+        "model": "logistics.country",
+        "pk": 7,
+        "fields": {
+            "name": "Japón",
+            "code_iso": "JP",
+            "continent": "Asia",
+            "latitude": 36.2048,
+            "longitude": 138.2529
+        }
+    },
+    {
+        "model": "logistics.country",
+        "pk": 8,
+        "fields": {
+            "name": "Australia",
+            "code_iso": "AU",
+            "continent": "Oceanía",
+            "latitude": -25.2744,
+            "longitude": 133.7751
+        }
+    },
+    {
+        "model": "logistics.country",
+        "pk": 9,
+        "fields": {
+            "name": "Sudáfrica",
+            "code_iso": "ZA",
+            "continent": "África",
+            "latitude": -30.5595,
+            "longitude": 22.9375
+        }
+    },
+    {
+        "model": "logistics.country",
+        "pk": 10,
+        "fields": {
+            "name": "India",
+            "code_iso": "IN",
+            "continent": "Asia",
+            "latitude": 20.5937,
+            "longitude": 78.9629
+        }
+    },
+    {
+        "model": "logistics.product",
+        "pk": 1,
+        "fields": {
+            "name": "Smart Sensor Global",
+            "category": "IoT",
+            "price": "180.00"
+        }
+    },
+    {
+        "model": "logistics.product",
+        "pk": 2,
+        "fields": {
+            "name": "Router Industrial X900",
+            "category": "Redes",
+            "price": "420.00"
+        }
+    },
+    {
+        "model": "logistics.product",
+        "pk": 3,
+        "fields": {
+            "name": "Tracker Logístico GPS",
+            "category": "Logística",
+            "price": "260.00"
+        }
+    },
+    {
+        "model": "logistics.product",
+        "pk": 4,
+        "fields": {
+            "name": "Servidor Edge Mini",
+            "category": "Infraestructura",
+            "price": "950.00"
+        }
+    },
+    {
+        "model": "logistics.product",
+        "pk": 5,
+        "fields": {
+            "name": "Licencia Analytics Pro",
+            "category": "Software",
+            "price": "120.00"
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 1,
+        "fields": {
+            "country": 1,
+            "product": 2,
+            "quantity": 14,
+            "total_amount": "6174.00",
+            "sale_date": "2025-06-15",
+            "growth_percentage": -3.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 2,
+        "fields": {
+            "country": 1,
+            "product": 3,
+            "quantity": 17,
+            "total_amount": "4641.00",
+            "sale_date": "2025-07-15",
+            "growth_percentage": 12.1
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 3,
+        "fields": {
+            "country": 1,
+            "product": 4,
+            "quantity": 20,
+            "total_amount": "19950.00",
+            "sale_date": "2025-08-15",
+            "growth_percentage": 5.4
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 4,
+        "fields": {
+            "country": 1,
+            "product": 5,
+            "quantity": 23,
+            "total_amount": "2898.00",
+            "sale_date": "2025-09-15",
+            "growth_percentage": -6.8
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 5,
+        "fields": {
+            "country": 1,
+            "product": 1,
+            "quantity": 26,
+            "total_amount": "4914.00",
+            "sale_date": "2025-10-15",
+            "growth_percentage": 14.3
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 6,
+        "fields": {
+            "country": 1,
+            "product": 2,
+            "quantity": 29,
+            "total_amount": "12789.00",
+            "sale_date": "2025-11-15",
+            "growth_percentage": -1.9
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 7,
+        "fields": {
+            "country": 1,
+            "product": 3,
+            "quantity": 32,
+            "total_amount": "8736.00",
+            "sale_date": "2025-12-15",
+            "growth_percentage": 9.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 8,
+        "fields": {
+            "country": 1,
+            "product": 4,
+            "quantity": 35,
+            "total_amount": "34912.50",
+            "sale_date": "2026-01-15",
+            "growth_percentage": 3.6
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 9,
+        "fields": {
+            "country": 1,
+            "product": 5,
+            "quantity": 38,
+            "total_amount": "4788.00",
+            "sale_date": "2026-02-15",
+            "growth_percentage": -4.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 10,
+        "fields": {
+            "country": 1,
+            "product": 1,
+            "quantity": 41,
+            "total_amount": "7749.00",
+            "sale_date": "2026-03-15",
+            "growth_percentage": 16.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 11,
+        "fields": {
+            "country": 1,
+            "product": 2,
+            "quantity": 44,
+            "total_amount": "19404.00",
+            "sale_date": "2026-04-15",
+            "growth_percentage": -2.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 12,
+        "fields": {
+            "country": 1,
+            "product": 3,
+            "quantity": 47,
+            "total_amount": "12831.00",
+            "sale_date": "2026-05-15",
+            "growth_percentage": 8.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 13,
+        "fields": {
+            "country": 1,
+            "product": 4,
+            "quantity": 50,
+            "total_amount": "49875.00",
+            "sale_date": "2025-06-15",
+            "growth_percentage": -3.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 14,
+        "fields": {
+            "country": 1,
+            "product": 5,
+            "quantity": 53,
+            "total_amount": "6678.00",
+            "sale_date": "2025-07-15",
+            "growth_percentage": 12.1
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 15,
+        "fields": {
+            "country": 1,
+            "product": 1,
+            "quantity": 56,
+            "total_amount": "10584.00",
+            "sale_date": "2025-08-15",
+            "growth_percentage": 5.4
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 16,
+        "fields": {
+            "country": 1,
+            "product": 2,
+            "quantity": 14,
+            "total_amount": "6174.00",
+            "sale_date": "2025-09-15",
+            "growth_percentage": -6.8
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 17,
+        "fields": {
+            "country": 1,
+            "product": 3,
+            "quantity": 17,
+            "total_amount": "4641.00",
+            "sale_date": "2025-10-15",
+            "growth_percentage": 14.3
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 18,
+        "fields": {
+            "country": 1,
+            "product": 4,
+            "quantity": 20,
+            "total_amount": "19950.00",
+            "sale_date": "2025-11-15",
+            "growth_percentage": -1.9
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 19,
+        "fields": {
+            "country": 1,
+            "product": 5,
+            "quantity": 23,
+            "total_amount": "2898.00",
+            "sale_date": "2025-12-15",
+            "growth_percentage": 9.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 20,
+        "fields": {
+            "country": 1,
+            "product": 1,
+            "quantity": 26,
+            "total_amount": "4914.00",
+            "sale_date": "2026-01-15",
+            "growth_percentage": 3.6
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 21,
+        "fields": {
+            "country": 2,
+            "product": 3,
+            "quantity": 16,
+            "total_amount": "4576.00",
+            "sale_date": "2025-06-15",
+            "growth_percentage": 12.1
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 22,
+        "fields": {
+            "country": 2,
+            "product": 4,
+            "quantity": 19,
+            "total_amount": "19855.00",
+            "sale_date": "2025-07-15",
+            "growth_percentage": 5.4
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 23,
+        "fields": {
+            "country": 2,
+            "product": 5,
+            "quantity": 22,
+            "total_amount": "2904.00",
+            "sale_date": "2025-08-15",
+            "growth_percentage": -6.8
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 24,
+        "fields": {
+            "country": 2,
+            "product": 1,
+            "quantity": 25,
+            "total_amount": "4950.00",
+            "sale_date": "2025-09-15",
+            "growth_percentage": 14.3
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 25,
+        "fields": {
+            "country": 2,
+            "product": 2,
+            "quantity": 28,
+            "total_amount": "12936.00",
+            "sale_date": "2025-10-15",
+            "growth_percentage": -1.9
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 26,
+        "fields": {
+            "country": 2,
+            "product": 3,
+            "quantity": 31,
+            "total_amount": "8866.00",
+            "sale_date": "2025-11-15",
+            "growth_percentage": 9.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 27,
+        "fields": {
+            "country": 2,
+            "product": 4,
+            "quantity": 34,
+            "total_amount": "35530.00",
+            "sale_date": "2025-12-15",
+            "growth_percentage": 3.6
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 28,
+        "fields": {
+            "country": 2,
+            "product": 5,
+            "quantity": 37,
+            "total_amount": "4884.00",
+            "sale_date": "2026-01-15",
+            "growth_percentage": -4.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 29,
+        "fields": {
+            "country": 2,
+            "product": 1,
+            "quantity": 40,
+            "total_amount": "7920.00",
+            "sale_date": "2026-02-15",
+            "growth_percentage": 16.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 30,
+        "fields": {
+            "country": 2,
+            "product": 2,
+            "quantity": 43,
+            "total_amount": "19866.00",
+            "sale_date": "2026-03-15",
+            "growth_percentage": -2.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 31,
+        "fields": {
+            "country": 2,
+            "product": 3,
+            "quantity": 46,
+            "total_amount": "13156.00",
+            "sale_date": "2026-04-15",
+            "growth_percentage": 8.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 32,
+        "fields": {
+            "country": 2,
+            "product": 4,
+            "quantity": 49,
+            "total_amount": "51205.00",
+            "sale_date": "2026-05-15",
+            "growth_percentage": -3.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 33,
+        "fields": {
+            "country": 2,
+            "product": 5,
+            "quantity": 52,
+            "total_amount": "6864.00",
+            "sale_date": "2025-06-15",
+            "growth_percentage": 12.1
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 34,
+        "fields": {
+            "country": 2,
+            "product": 1,
+            "quantity": 55,
+            "total_amount": "10890.00",
+            "sale_date": "2025-07-15",
+            "growth_percentage": 5.4
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 35,
+        "fields": {
+            "country": 2,
+            "product": 2,
+            "quantity": 13,
+            "total_amount": "6006.00",
+            "sale_date": "2025-08-15",
+            "growth_percentage": -6.8
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 36,
+        "fields": {
+            "country": 2,
+            "product": 3,
+            "quantity": 16,
+            "total_amount": "4576.00",
+            "sale_date": "2025-09-15",
+            "growth_percentage": 14.3
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 37,
+        "fields": {
+            "country": 2,
+            "product": 4,
+            "quantity": 19,
+            "total_amount": "19855.00",
+            "sale_date": "2025-10-15",
+            "growth_percentage": -1.9
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 38,
+        "fields": {
+            "country": 2,
+            "product": 5,
+            "quantity": 22,
+            "total_amount": "2904.00",
+            "sale_date": "2025-11-15",
+            "growth_percentage": 9.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 39,
+        "fields": {
+            "country": 2,
+            "product": 1,
+            "quantity": 25,
+            "total_amount": "4950.00",
+            "sale_date": "2025-12-15",
+            "growth_percentage": 3.6
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 40,
+        "fields": {
+            "country": 2,
+            "product": 2,
+            "quantity": 28,
+            "total_amount": "12936.00",
+            "sale_date": "2026-01-15",
+            "growth_percentage": -4.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 41,
+        "fields": {
+            "country": 3,
+            "product": 4,
+            "quantity": 18,
+            "total_amount": "19665.00",
+            "sale_date": "2025-06-15",
+            "growth_percentage": 5.4
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 42,
+        "fields": {
+            "country": 3,
+            "product": 5,
+            "quantity": 21,
+            "total_amount": "2898.00",
+            "sale_date": "2025-07-15",
+            "growth_percentage": -6.8
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 43,
+        "fields": {
+            "country": 3,
+            "product": 1,
+            "quantity": 24,
+            "total_amount": "4968.00",
+            "sale_date": "2025-08-15",
+            "growth_percentage": 14.3
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 44,
+        "fields": {
+            "country": 3,
+            "product": 2,
+            "quantity": 27,
+            "total_amount": "13041.00",
+            "sale_date": "2025-09-15",
+            "growth_percentage": -1.9
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 45,
+        "fields": {
+            "country": 3,
+            "product": 3,
+            "quantity": 30,
+            "total_amount": "8970.00",
+            "sale_date": "2025-10-15",
+            "growth_percentage": 9.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 46,
+        "fields": {
+            "country": 3,
+            "product": 4,
+            "quantity": 33,
+            "total_amount": "36052.50",
+            "sale_date": "2025-11-15",
+            "growth_percentage": 3.6
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 47,
+        "fields": {
+            "country": 3,
+            "product": 5,
+            "quantity": 36,
+            "total_amount": "4968.00",
+            "sale_date": "2025-12-15",
+            "growth_percentage": -4.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 48,
+        "fields": {
+            "country": 3,
+            "product": 1,
+            "quantity": 39,
+            "total_amount": "8073.00",
+            "sale_date": "2026-01-15",
+            "growth_percentage": 16.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 49,
+        "fields": {
+            "country": 3,
+            "product": 2,
+            "quantity": 42,
+            "total_amount": "20286.00",
+            "sale_date": "2026-02-15",
+            "growth_percentage": -2.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 50,
+        "fields": {
+            "country": 3,
+            "product": 3,
+            "quantity": 45,
+            "total_amount": "13455.00",
+            "sale_date": "2026-03-15",
+            "growth_percentage": 8.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 51,
+        "fields": {
+            "country": 3,
+            "product": 4,
+            "quantity": 48,
+            "total_amount": "52440.00",
+            "sale_date": "2026-04-15",
+            "growth_percentage": -3.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 52,
+        "fields": {
+            "country": 3,
+            "product": 5,
+            "quantity": 51,
+            "total_amount": "7038.00",
+            "sale_date": "2026-05-15",
+            "growth_percentage": 12.1
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 53,
+        "fields": {
+            "country": 3,
+            "product": 1,
+            "quantity": 54,
+            "total_amount": "11178.00",
+            "sale_date": "2025-06-15",
+            "growth_percentage": 5.4
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 54,
+        "fields": {
+            "country": 3,
+            "product": 2,
+            "quantity": 12,
+            "total_amount": "5796.00",
+            "sale_date": "2025-07-15",
+            "growth_percentage": -6.8
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 55,
+        "fields": {
+            "country": 3,
+            "product": 3,
+            "quantity": 15,
+            "total_amount": "4485.00",
+            "sale_date": "2025-08-15",
+            "growth_percentage": 14.3
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 56,
+        "fields": {
+            "country": 3,
+            "product": 4,
+            "quantity": 18,
+            "total_amount": "19665.00",
+            "sale_date": "2025-09-15",
+            "growth_percentage": -1.9
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 57,
+        "fields": {
+            "country": 3,
+            "product": 5,
+            "quantity": 21,
+            "total_amount": "2898.00",
+            "sale_date": "2025-10-15",
+            "growth_percentage": 9.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 58,
+        "fields": {
+            "country": 3,
+            "product": 1,
+            "quantity": 24,
+            "total_amount": "4968.00",
+            "sale_date": "2025-11-15",
+            "growth_percentage": 3.6
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 59,
+        "fields": {
+            "country": 3,
+            "product": 2,
+            "quantity": 27,
+            "total_amount": "13041.00",
+            "sale_date": "2025-12-15",
+            "growth_percentage": -4.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 60,
+        "fields": {
+            "country": 3,
+            "product": 3,
+            "quantity": 30,
+            "total_amount": "8970.00",
+            "sale_date": "2026-01-15",
+            "growth_percentage": 16.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 61,
+        "fields": {
+            "country": 4,
+            "product": 5,
+            "quantity": 20,
+            "total_amount": "2880.00",
+            "sale_date": "2025-06-15",
+            "growth_percentage": -6.8
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 62,
+        "fields": {
+            "country": 4,
+            "product": 1,
+            "quantity": 23,
+            "total_amount": "4968.00",
+            "sale_date": "2025-07-15",
+            "growth_percentage": 14.3
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 63,
+        "fields": {
+            "country": 4,
+            "product": 2,
+            "quantity": 26,
+            "total_amount": "13104.00",
+            "sale_date": "2025-08-15",
+            "growth_percentage": -1.9
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 64,
+        "fields": {
+            "country": 4,
+            "product": 3,
+            "quantity": 29,
+            "total_amount": "9048.00",
+            "sale_date": "2025-09-15",
+            "growth_percentage": 9.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 65,
+        "fields": {
+            "country": 4,
+            "product": 4,
+            "quantity": 32,
+            "total_amount": "36480.00",
+            "sale_date": "2025-10-15",
+            "growth_percentage": 3.6
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 66,
+        "fields": {
+            "country": 4,
+            "product": 5,
+            "quantity": 35,
+            "total_amount": "5040.00",
+            "sale_date": "2025-11-15",
+            "growth_percentage": -4.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 67,
+        "fields": {
+            "country": 4,
+            "product": 1,
+            "quantity": 38,
+            "total_amount": "8208.00",
+            "sale_date": "2025-12-15",
+            "growth_percentage": 16.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 68,
+        "fields": {
+            "country": 4,
+            "product": 2,
+            "quantity": 41,
+            "total_amount": "20664.00",
+            "sale_date": "2026-01-15",
+            "growth_percentage": -2.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 69,
+        "fields": {
+            "country": 4,
+            "product": 3,
+            "quantity": 44,
+            "total_amount": "13728.00",
+            "sale_date": "2026-02-15",
+            "growth_percentage": 8.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 70,
+        "fields": {
+            "country": 4,
+            "product": 4,
+            "quantity": 47,
+            "total_amount": "53580.00",
+            "sale_date": "2026-03-15",
+            "growth_percentage": -3.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 71,
+        "fields": {
+            "country": 4,
+            "product": 5,
+            "quantity": 50,
+            "total_amount": "7200.00",
+            "sale_date": "2026-04-15",
+            "growth_percentage": 12.1
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 72,
+        "fields": {
+            "country": 4,
+            "product": 1,
+            "quantity": 53,
+            "total_amount": "11448.00",
+            "sale_date": "2026-05-15",
+            "growth_percentage": 5.4
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 73,
+        "fields": {
+            "country": 4,
+            "product": 2,
+            "quantity": 56,
+            "total_amount": "28224.00",
+            "sale_date": "2025-06-15",
+            "growth_percentage": -6.8
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 74,
+        "fields": {
+            "country": 4,
+            "product": 3,
+            "quantity": 14,
+            "total_amount": "4368.00",
+            "sale_date": "2025-07-15",
+            "growth_percentage": 14.3
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 75,
+        "fields": {
+            "country": 4,
+            "product": 4,
+            "quantity": 17,
+            "total_amount": "19380.00",
+            "sale_date": "2025-08-15",
+            "growth_percentage": -1.9
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 76,
+        "fields": {
+            "country": 4,
+            "product": 5,
+            "quantity": 20,
+            "total_amount": "2880.00",
+            "sale_date": "2025-09-15",
+            "growth_percentage": 9.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 77,
+        "fields": {
+            "country": 4,
+            "product": 1,
+            "quantity": 23,
+            "total_amount": "4968.00",
+            "sale_date": "2025-10-15",
+            "growth_percentage": 3.6
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 78,
+        "fields": {
+            "country": 4,
+            "product": 2,
+            "quantity": 26,
+            "total_amount": "13104.00",
+            "sale_date": "2025-11-15",
+            "growth_percentage": -4.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 79,
+        "fields": {
+            "country": 4,
+            "product": 3,
+            "quantity": 29,
+            "total_amount": "9048.00",
+            "sale_date": "2025-12-15",
+            "growth_percentage": 16.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 80,
+        "fields": {
+            "country": 4,
+            "product": 4,
+            "quantity": 32,
+            "total_amount": "36480.00",
+            "sale_date": "2026-01-15",
+            "growth_percentage": -2.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 81,
+        "fields": {
+            "country": 5,
+            "product": 1,
+            "quantity": 22,
+            "total_amount": "4950.00",
+            "sale_date": "2025-06-15",
+            "growth_percentage": 14.3
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 82,
+        "fields": {
+            "country": 5,
+            "product": 2,
+            "quantity": 25,
+            "total_amount": "13125.00",
+            "sale_date": "2025-07-15",
+            "growth_percentage": -1.9
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 83,
+        "fields": {
+            "country": 5,
+            "product": 3,
+            "quantity": 28,
+            "total_amount": "9100.00",
+            "sale_date": "2025-08-15",
+            "growth_percentage": 9.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 84,
+        "fields": {
+            "country": 5,
+            "product": 4,
+            "quantity": 31,
+            "total_amount": "36812.50",
+            "sale_date": "2025-09-15",
+            "growth_percentage": 3.6
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 85,
+        "fields": {
+            "country": 5,
+            "product": 5,
+            "quantity": 34,
+            "total_amount": "5100.00",
+            "sale_date": "2025-10-15",
+            "growth_percentage": -4.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 86,
+        "fields": {
+            "country": 5,
+            "product": 1,
+            "quantity": 37,
+            "total_amount": "8325.00",
+            "sale_date": "2025-11-15",
+            "growth_percentage": 16.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 87,
+        "fields": {
+            "country": 5,
+            "product": 2,
+            "quantity": 40,
+            "total_amount": "21000.00",
+            "sale_date": "2025-12-15",
+            "growth_percentage": -2.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 88,
+        "fields": {
+            "country": 5,
+            "product": 3,
+            "quantity": 43,
+            "total_amount": "13975.00",
+            "sale_date": "2026-01-15",
+            "growth_percentage": 8.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 89,
+        "fields": {
+            "country": 5,
+            "product": 4,
+            "quantity": 46,
+            "total_amount": "54625.00",
+            "sale_date": "2026-02-15",
+            "growth_percentage": -3.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 90,
+        "fields": {
+            "country": 5,
+            "product": 5,
+            "quantity": 49,
+            "total_amount": "7350.00",
+            "sale_date": "2026-03-15",
+            "growth_percentage": 12.1
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 91,
+        "fields": {
+            "country": 5,
+            "product": 1,
+            "quantity": 52,
+            "total_amount": "11700.00",
+            "sale_date": "2026-04-15",
+            "growth_percentage": 5.4
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 92,
+        "fields": {
+            "country": 5,
+            "product": 2,
+            "quantity": 55,
+            "total_amount": "28875.00",
+            "sale_date": "2026-05-15",
+            "growth_percentage": -6.8
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 93,
+        "fields": {
+            "country": 5,
+            "product": 3,
+            "quantity": 13,
+            "total_amount": "4225.00",
+            "sale_date": "2025-06-15",
+            "growth_percentage": 14.3
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 94,
+        "fields": {
+            "country": 5,
+            "product": 4,
+            "quantity": 16,
+            "total_amount": "19000.00",
+            "sale_date": "2025-07-15",
+            "growth_percentage": -1.9
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 95,
+        "fields": {
+            "country": 5,
+            "product": 5,
+            "quantity": 19,
+            "total_amount": "2850.00",
+            "sale_date": "2025-08-15",
+            "growth_percentage": 9.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 96,
+        "fields": {
+            "country": 5,
+            "product": 1,
+            "quantity": 22,
+            "total_amount": "4950.00",
+            "sale_date": "2025-09-15",
+            "growth_percentage": 3.6
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 97,
+        "fields": {
+            "country": 5,
+            "product": 2,
+            "quantity": 25,
+            "total_amount": "13125.00",
+            "sale_date": "2025-10-15",
+            "growth_percentage": -4.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 98,
+        "fields": {
+            "country": 5,
+            "product": 3,
+            "quantity": 28,
+            "total_amount": "9100.00",
+            "sale_date": "2025-11-15",
+            "growth_percentage": 16.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 99,
+        "fields": {
+            "country": 5,
+            "product": 4,
+            "quantity": 31,
+            "total_amount": "36812.50",
+            "sale_date": "2025-12-15",
+            "growth_percentage": -2.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 100,
+        "fields": {
+            "country": 5,
+            "product": 5,
+            "quantity": 34,
+            "total_amount": "5100.00",
+            "sale_date": "2026-01-15",
+            "growth_percentage": 8.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 101,
+        "fields": {
+            "country": 6,
+            "product": 2,
+            "quantity": 24,
+            "total_amount": "13104.00",
+            "sale_date": "2025-06-15",
+            "growth_percentage": -1.9
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 102,
+        "fields": {
+            "country": 6,
+            "product": 3,
+            "quantity": 27,
+            "total_amount": "9126.00",
+            "sale_date": "2025-07-15",
+            "growth_percentage": 9.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 103,
+        "fields": {
+            "country": 6,
+            "product": 4,
+            "quantity": 30,
+            "total_amount": "37050.00",
+            "sale_date": "2025-08-15",
+            "growth_percentage": 3.6
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 104,
+        "fields": {
+            "country": 6,
+            "product": 5,
+            "quantity": 33,
+            "total_amount": "5148.00",
+            "sale_date": "2025-09-15",
+            "growth_percentage": -4.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 105,
+        "fields": {
+            "country": 6,
+            "product": 1,
+            "quantity": 36,
+            "total_amount": "8424.00",
+            "sale_date": "2025-10-15",
+            "growth_percentage": 16.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 106,
+        "fields": {
+            "country": 6,
+            "product": 2,
+            "quantity": 39,
+            "total_amount": "21294.00",
+            "sale_date": "2025-11-15",
+            "growth_percentage": -2.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 107,
+        "fields": {
+            "country": 6,
+            "product": 3,
+            "quantity": 42,
+            "total_amount": "14196.00",
+            "sale_date": "2025-12-15",
+            "growth_percentage": 8.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 108,
+        "fields": {
+            "country": 6,
+            "product": 4,
+            "quantity": 45,
+            "total_amount": "55575.00",
+            "sale_date": "2026-01-15",
+            "growth_percentage": -3.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 109,
+        "fields": {
+            "country": 6,
+            "product": 5,
+            "quantity": 48,
+            "total_amount": "7488.00",
+            "sale_date": "2026-02-15",
+            "growth_percentage": 12.1
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 110,
+        "fields": {
+            "country": 6,
+            "product": 1,
+            "quantity": 51,
+            "total_amount": "11934.00",
+            "sale_date": "2026-03-15",
+            "growth_percentage": 5.4
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 111,
+        "fields": {
+            "country": 6,
+            "product": 2,
+            "quantity": 54,
+            "total_amount": "29484.00",
+            "sale_date": "2026-04-15",
+            "growth_percentage": -6.8
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 112,
+        "fields": {
+            "country": 6,
+            "product": 3,
+            "quantity": 12,
+            "total_amount": "4056.00",
+            "sale_date": "2026-05-15",
+            "growth_percentage": 14.3
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 113,
+        "fields": {
+            "country": 6,
+            "product": 4,
+            "quantity": 15,
+            "total_amount": "18525.00",
+            "sale_date": "2025-06-15",
+            "growth_percentage": -1.9
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 114,
+        "fields": {
+            "country": 6,
+            "product": 5,
+            "quantity": 18,
+            "total_amount": "2808.00",
+            "sale_date": "2025-07-15",
+            "growth_percentage": 9.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 115,
+        "fields": {
+            "country": 6,
+            "product": 1,
+            "quantity": 21,
+            "total_amount": "4914.00",
+            "sale_date": "2025-08-15",
+            "growth_percentage": 3.6
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 116,
+        "fields": {
+            "country": 6,
+            "product": 2,
+            "quantity": 24,
+            "total_amount": "13104.00",
+            "sale_date": "2025-09-15",
+            "growth_percentage": -4.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 117,
+        "fields": {
+            "country": 6,
+            "product": 3,
+            "quantity": 27,
+            "total_amount": "9126.00",
+            "sale_date": "2025-10-15",
+            "growth_percentage": 16.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 118,
+        "fields": {
+            "country": 6,
+            "product": 4,
+            "quantity": 30,
+            "total_amount": "37050.00",
+            "sale_date": "2025-11-15",
+            "growth_percentage": -2.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 119,
+        "fields": {
+            "country": 6,
+            "product": 5,
+            "quantity": 33,
+            "total_amount": "5148.00",
+            "sale_date": "2025-12-15",
+            "growth_percentage": 8.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 120,
+        "fields": {
+            "country": 6,
+            "product": 1,
+            "quantity": 36,
+            "total_amount": "8424.00",
+            "sale_date": "2026-01-15",
+            "growth_percentage": -3.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 121,
+        "fields": {
+            "country": 7,
+            "product": 3,
+            "quantity": 26,
+            "total_amount": "9126.00",
+            "sale_date": "2025-06-15",
+            "growth_percentage": 9.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 122,
+        "fields": {
+            "country": 7,
+            "product": 4,
+            "quantity": 29,
+            "total_amount": "37192.50",
+            "sale_date": "2025-07-15",
+            "growth_percentage": 3.6
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 123,
+        "fields": {
+            "country": 7,
+            "product": 5,
+            "quantity": 32,
+            "total_amount": "5184.00",
+            "sale_date": "2025-08-15",
+            "growth_percentage": -4.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 124,
+        "fields": {
+            "country": 7,
+            "product": 1,
+            "quantity": 35,
+            "total_amount": "8505.00",
+            "sale_date": "2025-09-15",
+            "growth_percentage": 16.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 125,
+        "fields": {
+            "country": 7,
+            "product": 2,
+            "quantity": 38,
+            "total_amount": "21546.00",
+            "sale_date": "2025-10-15",
+            "growth_percentage": -2.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 126,
+        "fields": {
+            "country": 7,
+            "product": 3,
+            "quantity": 41,
+            "total_amount": "14391.00",
+            "sale_date": "2025-11-15",
+            "growth_percentage": 8.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 127,
+        "fields": {
+            "country": 7,
+            "product": 4,
+            "quantity": 44,
+            "total_amount": "56430.00",
+            "sale_date": "2025-12-15",
+            "growth_percentage": -3.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 128,
+        "fields": {
+            "country": 7,
+            "product": 5,
+            "quantity": 47,
+            "total_amount": "7614.00",
+            "sale_date": "2026-01-15",
+            "growth_percentage": 12.1
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 129,
+        "fields": {
+            "country": 7,
+            "product": 1,
+            "quantity": 50,
+            "total_amount": "12150.00",
+            "sale_date": "2026-02-15",
+            "growth_percentage": 5.4
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 130,
+        "fields": {
+            "country": 7,
+            "product": 2,
+            "quantity": 53,
+            "total_amount": "30051.00",
+            "sale_date": "2026-03-15",
+            "growth_percentage": -6.8
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 131,
+        "fields": {
+            "country": 7,
+            "product": 3,
+            "quantity": 56,
+            "total_amount": "19656.00",
+            "sale_date": "2026-04-15",
+            "growth_percentage": 14.3
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 132,
+        "fields": {
+            "country": 7,
+            "product": 4,
+            "quantity": 14,
+            "total_amount": "17955.00",
+            "sale_date": "2026-05-15",
+            "growth_percentage": -1.9
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 133,
+        "fields": {
+            "country": 7,
+            "product": 5,
+            "quantity": 17,
+            "total_amount": "2754.00",
+            "sale_date": "2025-06-15",
+            "growth_percentage": 9.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 134,
+        "fields": {
+            "country": 7,
+            "product": 1,
+            "quantity": 20,
+            "total_amount": "4860.00",
+            "sale_date": "2025-07-15",
+            "growth_percentage": 3.6
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 135,
+        "fields": {
+            "country": 7,
+            "product": 2,
+            "quantity": 23,
+            "total_amount": "13041.00",
+            "sale_date": "2025-08-15",
+            "growth_percentage": -4.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 136,
+        "fields": {
+            "country": 7,
+            "product": 3,
+            "quantity": 26,
+            "total_amount": "9126.00",
+            "sale_date": "2025-09-15",
+            "growth_percentage": 16.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 137,
+        "fields": {
+            "country": 7,
+            "product": 4,
+            "quantity": 29,
+            "total_amount": "37192.50",
+            "sale_date": "2025-10-15",
+            "growth_percentage": -2.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 138,
+        "fields": {
+            "country": 7,
+            "product": 5,
+            "quantity": 32,
+            "total_amount": "5184.00",
+            "sale_date": "2025-11-15",
+            "growth_percentage": 8.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 139,
+        "fields": {
+            "country": 7,
+            "product": 1,
+            "quantity": 35,
+            "total_amount": "8505.00",
+            "sale_date": "2025-12-15",
+            "growth_percentage": -3.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 140,
+        "fields": {
+            "country": 7,
+            "product": 2,
+            "quantity": 38,
+            "total_amount": "21546.00",
+            "sale_date": "2026-01-15",
+            "growth_percentage": 12.1
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 141,
+        "fields": {
+            "country": 8,
+            "product": 4,
+            "quantity": 28,
+            "total_amount": "37240.00",
+            "sale_date": "2025-06-15",
+            "growth_percentage": 3.6
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 142,
+        "fields": {
+            "country": 8,
+            "product": 5,
+            "quantity": 31,
+            "total_amount": "5208.00",
+            "sale_date": "2025-07-15",
+            "growth_percentage": -4.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 143,
+        "fields": {
+            "country": 8,
+            "product": 1,
+            "quantity": 34,
+            "total_amount": "8568.00",
+            "sale_date": "2025-08-15",
+            "growth_percentage": 16.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 144,
+        "fields": {
+            "country": 8,
+            "product": 2,
+            "quantity": 37,
+            "total_amount": "21756.00",
+            "sale_date": "2025-09-15",
+            "growth_percentage": -2.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 145,
+        "fields": {
+            "country": 8,
+            "product": 3,
+            "quantity": 40,
+            "total_amount": "14560.00",
+            "sale_date": "2025-10-15",
+            "growth_percentage": 8.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 146,
+        "fields": {
+            "country": 8,
+            "product": 4,
+            "quantity": 43,
+            "total_amount": "57190.00",
+            "sale_date": "2025-11-15",
+            "growth_percentage": -3.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 147,
+        "fields": {
+            "country": 8,
+            "product": 5,
+            "quantity": 46,
+            "total_amount": "7728.00",
+            "sale_date": "2025-12-15",
+            "growth_percentage": 12.1
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 148,
+        "fields": {
+            "country": 8,
+            "product": 1,
+            "quantity": 49,
+            "total_amount": "12348.00",
+            "sale_date": "2026-01-15",
+            "growth_percentage": 5.4
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 149,
+        "fields": {
+            "country": 8,
+            "product": 2,
+            "quantity": 52,
+            "total_amount": "30576.00",
+            "sale_date": "2026-02-15",
+            "growth_percentage": -6.8
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 150,
+        "fields": {
+            "country": 8,
+            "product": 3,
+            "quantity": 55,
+            "total_amount": "20020.00",
+            "sale_date": "2026-03-15",
+            "growth_percentage": 14.3
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 151,
+        "fields": {
+            "country": 8,
+            "product": 4,
+            "quantity": 13,
+            "total_amount": "17290.00",
+            "sale_date": "2026-04-15",
+            "growth_percentage": -1.9
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 152,
+        "fields": {
+            "country": 8,
+            "product": 5,
+            "quantity": 16,
+            "total_amount": "2688.00",
+            "sale_date": "2026-05-15",
+            "growth_percentage": 9.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 153,
+        "fields": {
+            "country": 8,
+            "product": 1,
+            "quantity": 19,
+            "total_amount": "4788.00",
+            "sale_date": "2025-06-15",
+            "growth_percentage": 3.6
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 154,
+        "fields": {
+            "country": 8,
+            "product": 2,
+            "quantity": 22,
+            "total_amount": "12936.00",
+            "sale_date": "2025-07-15",
+            "growth_percentage": -4.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 155,
+        "fields": {
+            "country": 8,
+            "product": 3,
+            "quantity": 25,
+            "total_amount": "9100.00",
+            "sale_date": "2025-08-15",
+            "growth_percentage": 16.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 156,
+        "fields": {
+            "country": 8,
+            "product": 4,
+            "quantity": 28,
+            "total_amount": "37240.00",
+            "sale_date": "2025-09-15",
+            "growth_percentage": -2.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 157,
+        "fields": {
+            "country": 8,
+            "product": 5,
+            "quantity": 31,
+            "total_amount": "5208.00",
+            "sale_date": "2025-10-15",
+            "growth_percentage": 8.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 158,
+        "fields": {
+            "country": 8,
+            "product": 1,
+            "quantity": 34,
+            "total_amount": "8568.00",
+            "sale_date": "2025-11-15",
+            "growth_percentage": -3.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 159,
+        "fields": {
+            "country": 8,
+            "product": 2,
+            "quantity": 37,
+            "total_amount": "21756.00",
+            "sale_date": "2025-12-15",
+            "growth_percentage": 12.1
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 160,
+        "fields": {
+            "country": 8,
+            "product": 3,
+            "quantity": 40,
+            "total_amount": "14560.00",
+            "sale_date": "2026-01-15",
+            "growth_percentage": 5.4
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 161,
+        "fields": {
+            "country": 9,
+            "product": 5,
+            "quantity": 30,
+            "total_amount": "5220.00",
+            "sale_date": "2025-06-15",
+            "growth_percentage": -4.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 162,
+        "fields": {
+            "country": 9,
+            "product": 1,
+            "quantity": 33,
+            "total_amount": "8613.00",
+            "sale_date": "2025-07-15",
+            "growth_percentage": 16.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 163,
+        "fields": {
+            "country": 9,
+            "product": 2,
+            "quantity": 36,
+            "total_amount": "21924.00",
+            "sale_date": "2025-08-15",
+            "growth_percentage": -2.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 164,
+        "fields": {
+            "country": 9,
+            "product": 3,
+            "quantity": 39,
+            "total_amount": "14703.00",
+            "sale_date": "2025-09-15",
+            "growth_percentage": 8.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 165,
+        "fields": {
+            "country": 9,
+            "product": 4,
+            "quantity": 42,
+            "total_amount": "57855.00",
+            "sale_date": "2025-10-15",
+            "growth_percentage": -3.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 166,
+        "fields": {
+            "country": 9,
+            "product": 5,
+            "quantity": 45,
+            "total_amount": "7830.00",
+            "sale_date": "2025-11-15",
+            "growth_percentage": 12.1
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 167,
+        "fields": {
+            "country": 9,
+            "product": 1,
+            "quantity": 48,
+            "total_amount": "12528.00",
+            "sale_date": "2025-12-15",
+            "growth_percentage": 5.4
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 168,
+        "fields": {
+            "country": 9,
+            "product": 2,
+            "quantity": 51,
+            "total_amount": "31059.00",
+            "sale_date": "2026-01-15",
+            "growth_percentage": -6.8
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 169,
+        "fields": {
+            "country": 9,
+            "product": 3,
+            "quantity": 54,
+            "total_amount": "20358.00",
+            "sale_date": "2026-02-15",
+            "growth_percentage": 14.3
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 170,
+        "fields": {
+            "country": 9,
+            "product": 4,
+            "quantity": 12,
+            "total_amount": "16530.00",
+            "sale_date": "2026-03-15",
+            "growth_percentage": -1.9
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 171,
+        "fields": {
+            "country": 9,
+            "product": 5,
+            "quantity": 15,
+            "total_amount": "2610.00",
+            "sale_date": "2026-04-15",
+            "growth_percentage": 9.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 172,
+        "fields": {
+            "country": 9,
+            "product": 1,
+            "quantity": 18,
+            "total_amount": "4698.00",
+            "sale_date": "2026-05-15",
+            "growth_percentage": 3.6
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 173,
+        "fields": {
+            "country": 9,
+            "product": 2,
+            "quantity": 21,
+            "total_amount": "12789.00",
+            "sale_date": "2025-06-15",
+            "growth_percentage": -4.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 174,
+        "fields": {
+            "country": 9,
+            "product": 3,
+            "quantity": 24,
+            "total_amount": "9048.00",
+            "sale_date": "2025-07-15",
+            "growth_percentage": 16.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 175,
+        "fields": {
+            "country": 9,
+            "product": 4,
+            "quantity": 27,
+            "total_amount": "37192.50",
+            "sale_date": "2025-08-15",
+            "growth_percentage": -2.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 176,
+        "fields": {
+            "country": 9,
+            "product": 5,
+            "quantity": 30,
+            "total_amount": "5220.00",
+            "sale_date": "2025-09-15",
+            "growth_percentage": 8.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 177,
+        "fields": {
+            "country": 9,
+            "product": 1,
+            "quantity": 33,
+            "total_amount": "8613.00",
+            "sale_date": "2025-10-15",
+            "growth_percentage": -3.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 178,
+        "fields": {
+            "country": 9,
+            "product": 2,
+            "quantity": 36,
+            "total_amount": "21924.00",
+            "sale_date": "2025-11-15",
+            "growth_percentage": 12.1
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 179,
+        "fields": {
+            "country": 9,
+            "product": 3,
+            "quantity": 39,
+            "total_amount": "14703.00",
+            "sale_date": "2025-12-15",
+            "growth_percentage": 5.4
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 180,
+        "fields": {
+            "country": 9,
+            "product": 4,
+            "quantity": 42,
+            "total_amount": "57855.00",
+            "sale_date": "2026-01-15",
+            "growth_percentage": -6.8
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 181,
+        "fields": {
+            "country": 10,
+            "product": 1,
+            "quantity": 32,
+            "total_amount": "8640.00",
+            "sale_date": "2025-06-15",
+            "growth_percentage": 16.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 182,
+        "fields": {
+            "country": 10,
+            "product": 2,
+            "quantity": 35,
+            "total_amount": "22050.00",
+            "sale_date": "2025-07-15",
+            "growth_percentage": -2.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 183,
+        "fields": {
+            "country": 10,
+            "product": 3,
+            "quantity": 38,
+            "total_amount": "14820.00",
+            "sale_date": "2025-08-15",
+            "growth_percentage": 8.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 184,
+        "fields": {
+            "country": 10,
+            "product": 4,
+            "quantity": 41,
+            "total_amount": "58425.00",
+            "sale_date": "2025-09-15",
+            "growth_percentage": -3.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 185,
+        "fields": {
+            "country": 10,
+            "product": 5,
+            "quantity": 44,
+            "total_amount": "7920.00",
+            "sale_date": "2025-10-15",
+            "growth_percentage": 12.1
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 186,
+        "fields": {
+            "country": 10,
+            "product": 1,
+            "quantity": 47,
+            "total_amount": "12690.00",
+            "sale_date": "2025-11-15",
+            "growth_percentage": 5.4
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 187,
+        "fields": {
+            "country": 10,
+            "product": 2,
+            "quantity": 50,
+            "total_amount": "31500.00",
+            "sale_date": "2025-12-15",
+            "growth_percentage": -6.8
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 188,
+        "fields": {
+            "country": 10,
+            "product": 3,
+            "quantity": 53,
+            "total_amount": "20670.00",
+            "sale_date": "2026-01-15",
+            "growth_percentage": 14.3
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 189,
+        "fields": {
+            "country": 10,
+            "product": 4,
+            "quantity": 56,
+            "total_amount": "79800.00",
+            "sale_date": "2026-02-15",
+            "growth_percentage": -1.9
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 190,
+        "fields": {
+            "country": 10,
+            "product": 5,
+            "quantity": 14,
+            "total_amount": "2520.00",
+            "sale_date": "2026-03-15",
+            "growth_percentage": 9.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 191,
+        "fields": {
+            "country": 10,
+            "product": 1,
+            "quantity": 17,
+            "total_amount": "4590.00",
+            "sale_date": "2026-04-15",
+            "growth_percentage": 3.6
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 192,
+        "fields": {
+            "country": 10,
+            "product": 2,
+            "quantity": 20,
+            "total_amount": "12600.00",
+            "sale_date": "2026-05-15",
+            "growth_percentage": -4.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 193,
+        "fields": {
+            "country": 10,
+            "product": 3,
+            "quantity": 23,
+            "total_amount": "8970.00",
+            "sale_date": "2025-06-15",
+            "growth_percentage": 16.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 194,
+        "fields": {
+            "country": 10,
+            "product": 4,
+            "quantity": 26,
+            "total_amount": "37050.00",
+            "sale_date": "2025-07-15",
+            "growth_percentage": -2.7
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 195,
+        "fields": {
+            "country": 10,
+            "product": 5,
+            "quantity": 29,
+            "total_amount": "5220.00",
+            "sale_date": "2025-08-15",
+            "growth_percentage": 8.5
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 196,
+        "fields": {
+            "country": 10,
+            "product": 1,
+            "quantity": 32,
+            "total_amount": "8640.00",
+            "sale_date": "2025-09-15",
+            "growth_percentage": -3.2
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 197,
+        "fields": {
+            "country": 10,
+            "product": 2,
+            "quantity": 35,
+            "total_amount": "22050.00",
+            "sale_date": "2025-10-15",
+            "growth_percentage": 12.1
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 198,
+        "fields": {
+            "country": 10,
+            "product": 3,
+            "quantity": 38,
+            "total_amount": "14820.00",
+            "sale_date": "2025-11-15",
+            "growth_percentage": 5.4
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 199,
+        "fields": {
+            "country": 10,
+            "product": 4,
+            "quantity": 41,
+            "total_amount": "58425.00",
+            "sale_date": "2025-12-15",
+            "growth_percentage": -6.8
+        }
+    },
+    {
+        "model": "logistics.sale",
+        "pk": 200,
+        "fields": {
+            "country": 10,
+            "product": 5,
+            "quantity": 44,
+            "total_amount": "7920.00",
+            "sale_date": "2026-01-15",
+            "growth_percentage": 14.3
+        }
+    }
+]

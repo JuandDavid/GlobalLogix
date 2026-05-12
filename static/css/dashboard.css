@@ -1,0 +1,1255 @@
+:root {
+    --bg-main: #0f172a;
+    --bg-card: #111827;
+    --bg-card-light: #1f2937;
+    --border-color: rgba(148, 163, 184, 0.2);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --primary: #38bdf8;
+    --primary-soft: rgba(56, 189, 248, 0.14);
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --shadow-card: 0 20px 45px rgba(15, 23, 42, 0.45);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.08), transparent 35%),
+        var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.top-navbar {
+    width: 100%;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.92);
+    border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(14px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.brand-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--primary), #22c55e);
+    color: #020617;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.navbar-brand h1 {
+    font-size: 1.35rem;
+    line-height: 1.1;
+}
+
+.navbar-brand p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    padding: 9px 14px;
+    border-radius: 999px;
+    transition: all 0.2s ease;
+}
+
+.navbar-links a:hover {
+    color: var(--text-main);
+    background: var(--primary-soft);
+}
+
+/* =========================================================
+   LAYOUT PRINCIPAL
+   ========================================================= */
+
+.page-container {
+    width: min(1400px, 92%);
+    margin: 0 auto;
+    padding: 34px 0 60px;
+}
+
+.dashboard-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+.section-label {
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.dashboard-header h2 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.1;
+    margin: 8px 0 12px;
+}
+
+.dashboard-header p {
+    color: var(--text-muted);
+    max-width: 720px;
+    line-height: 1.6;
+}
+
+.header-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--border-color);
+    background: rgba(17, 24, 39, 0.72);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--success);
+    box-shadow: 0 0 14px rgba(34, 197, 94, 0.8);
+}
+
+/* =========================================================
+   TARJETAS RESUMEN
+   ========================================================= */
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.summary-card {
+    background: linear-gradient(180deg, rgba(31, 41, 55, 0.95), rgba(17, 24, 39, 0.95));
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 22px;
+    box-shadow: var(--shadow-card);
+}
+
+.summary-label {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.86rem;
+    margin-bottom: 12px;
+}
+
+.summary-card strong {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.summary-card p {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+/* =========================================================
+   PANELES
+   ========================================================= */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 22px;
+    margin-bottom: 24px;
+}
+
+.panel,
+.info-panel {
+    background: rgba(17, 24, 39, 0.88);
+    border: 1px solid var(--border-color);
+    border-radius: 28px;
+    padding: 22px;
+    box-shadow: var(--shadow-card);
+}
+
+.panel-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.panel-header h3,
+.info-panel h3 {
+    font-size: 1.25rem;
+    margin-top: 6px;
+}
+
+.panel-badge {
+    color: var(--primary);
+    background: var(--primary-soft);
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    border: 1px solid rgba(56, 189, 248, 0.26);
+}
+
+/* =========================================================
+   MAPA Y GRÁFICA PRINCIPAL
+   ========================================================= */
+
+.map-placeholder {
+    width: 100%;
+    min-height: 520px;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px dashed rgba(148, 163, 184, 0.35);
+    background:
+        linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(34, 197, 94, 0.08)),
+        #020617;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart-placeholder {
+    min-height: 520px;
+    border-radius: 22px;
+    border: 1px dashed rgba(148, 163, 184, 0.35);
+    background: #020617;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.chart-placeholder canvas {
+    display: none;
+}
+
+.placeholder-content {
+    text-align: center;
+    max-width: 360px;
+    padding: 24px;
+}
+
+.placeholder-content h4 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.placeholder-content p {
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* =========================================================
+   MAPA Y POPUP AZURE MAPS - FASE 6
+   ========================================================= */
+
+.map-container {
+    width: 100%;
+    height: 520px;
+    min-height: 520px;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid rgba(56, 189, 248, 0.24);
+    background: #020617;
+    margin-top: 18px;
+}
+
+.map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 14px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.map-legend div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-dot {
+    width: 11px;
+    height: 11px;
+    min-width: 11px;
+    min-height: 11px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.legend-dot.positive {
+    background: #22c55e;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.65);
+}
+
+.legend-dot.negative {
+    background: #ef4444;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.65);
+}
+
+.legend-dot.neutral {
+    background: #38bdf8;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.65);
+}
+
+.map-popup {
+    min-width: 230px;
+    padding: 12px;
+    color: #f8fafc;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.map-popup h4 {
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+    color: #38bdf8;
+}
+
+.map-popup p {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    margin: 7px 0;
+    font-size: 0.86rem;
+    color: #cbd5e1;
+}
+
+.map-popup strong {
+    color: #f8fafc;
+    font-weight: 700;
+}
+
+.map-popup span {
+    text-align: right;
+}
+
+.map-popup a {
+    display: block;
+    margin-top: 12px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: rgba(56, 189, 248, 0.16);
+    color: #38bdf8;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 700;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+}
+
+.map-popup a:hover {
+    background: rgba(56, 189, 248, 0.25);
+    text-decoration: none;
+}
+
+.map-popup .growth-positive {
+    color: #22c55e;
+    font-weight: 700;
+}
+
+.map-popup .growth-negative {
+    color: #ef4444;
+    font-weight: 700;
+}
+
+.atlas-popup-content {
+    background: rgba(15, 23, 42, 0.98) !important;
+    color: #f8fafc !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(56, 189, 248, 0.35) !important;
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.55) !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+.atlas-popup-tip {
+    border-top-color: rgba(15, 23, 42, 0.98) !important;
+}
+
+.atlas-popup-close-button {
+    color: #f8fafc !important;
+    font-size: 18px !important;
+}
+
+/* =========================================================
+   PANEL DE FLUJO
+   ========================================================= */
+
+.info-panel {
+    margin-top: 4px;
+}
+
+.flow-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.flow-item {
+    background: rgba(31, 41, 55, 0.75);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 18px;
+}
+
+.flow-item strong {
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
+    background: var(--primary-soft);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+}
+
+.flow-item p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* =========================================================
+   FASE 7 - VISTA DE DETALLE POR PAÍS
+   ========================================================= */
+
+.country-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 34px;
+}
+
+.country-detail-header h2 {
+    margin: 10px 0 12px;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    letter-spacing: -0.04em;
+    color: var(--text-main);
+}
+
+.country-detail-header p {
+    max-width: 680px;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 18px;
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.small-card-value {
+    font-size: 1.4rem !important;
+    line-height: 1.2;
+}
+
+.detail-chart-panel {
+    min-height: 470px;
+}
+
+.country-chart-container {
+    position: relative;
+    width: 100%;
+    height: 360px;
+    margin-top: 24px;
+    padding: 18px;
+    border-radius: 22px;
+    background: rgba(2, 6, 23, 0.45);
+    border: 1px dashed rgba(148, 163, 184, 0.25);
+}
+
+.country-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 22px;
+}
+
+.country-info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.country-info-item:last-child {
+    border-bottom: none;
+}
+
+.country-info-item span {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+}
+
+.country-info-item strong {
+    color: var(--text-main);
+    text-align: right;
+    font-size: 0.95rem;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .flow-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 720px) {
+    .top-navbar {
+        padding: 16px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .navbar-links {
+        width: 100%;
+    }
+
+    .dashboard-header,
+    .country-detail-header {
+        flex-direction: column;
+    }
+
+    .summary-grid,
+    .flow-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-container {
+        width: min(100% - 32px, 1400px);
+        padding-top: 24px;
+    }
+
+    .map-placeholder,
+    .chart-placeholder {
+        min-height: 360px;
+    }
+
+    .map-container {
+        height: 360px;
+        min-height: 360px;
+    }
+
+    .country-chart-container {
+        height: 300px;
+    }
+
+    /* =========================================================
+   AJUSTE FINAL CANVAS CHART.JS - FASE 7
+   ========================================================= */
+
+    .country-chart-container canvas {
+        display: block;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .chart-error-message {
+        width: 100%;
+        height: 100%;
+        min-height: 280px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-muted);
+        text-align: center;
+        padding: 24px;
+    }
+
+    .chart-error-message h4 {
+        color: var(--text-main);
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+    }
+
+    .chart-error-message p {
+        color: var(--text-muted);
+        line-height: 1.6;
+    }
+
+    /* =========================================================
+   FASE 8 - GRÁFICA GLOBAL DEL DASHBOARD
+   ========================================================= */
+
+    .dashboard-chart-container {
+        position: relative;
+        width: 100%;
+        height: 520px;
+        padding: 18px;
+        border-radius: 22px;
+        background: rgba(2, 6, 23, 0.45);
+        border: 1px dashed rgba(148, 163, 184, 0.25);
+    }
+
+    .dashboard-chart-container canvas {
+        display: block;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    /* =========================================================
+   AJUSTE FINAL POPUP OSCURO AZURE MAPS
+   ========================================================= */
+
+    .atlas-popup-content {
+        background: #0f172a !important;
+        color: #f8fafc !important;
+        border-radius: 16px !important;
+        border: 1px solid rgba(56, 189, 248, 0.45) !important;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65) !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+    }
+
+    .atlas-popup-tip {
+        border-top-color: #0f172a !important;
+    }
+
+    .atlas-popup-close-button {
+        color: #f8fafc !important;
+        font-size: 18px !important;
+    }
+
+    .map-popup {
+        min-width: 250px;
+        padding: 14px;
+        background: #0f172a;
+        color: #f8fafc;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .map-popup h4 {
+        margin: 0 0 12px 0;
+        font-size: 1.05rem;
+        color: #38bdf8;
+    }
+
+    .map-popup p {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        margin: 8px 0;
+        font-size: 0.88rem;
+        color: #cbd5e1;
+    }
+
+    .map-popup strong {
+        color: #f8fafc;
+        font-weight: 700;
+    }
+
+    .map-popup span {
+        color: #e5e7eb;
+        text-align: right;
+        font-weight: 600;
+    }
+
+    .map-popup .growth-positive {
+        color: #22c55e;
+        font-weight: 800;
+    }
+
+    .map-popup .growth-negative {
+        color: #ef4444;
+        font-weight: 800;
+    }
+
+    .map-popup a {
+        display: block;
+        margin-top: 14px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        background: rgba(56, 189, 248, 0.16);
+        color: #38bdf8;
+        text-align: center;
+        text-decoration: none;
+        font-weight: 700;
+        border: 1px solid rgba(56, 189, 248, 0.35);
+    }
+
+    .map-popup a:hover {
+        background: rgba(56, 189, 248, 0.26);
+    }
+
+    /* =========================================================
+   FASE 10 - INDICADORES DE CRECIMIENTO
+   ========================================================= */
+
+    .growth-text-positive {
+        color: #22c55e !important;
+    }
+
+    .growth-text-negative {
+        color: #ef4444 !important;
+    }
+
+    /* =========================================================
+   FASE 10.4 - PANEL DE ANÁLISIS AUTOMÁTICO
+   ========================================================= */
+
+    .analysis-panel {
+        background: linear-gradient(135deg, rgba(14, 165, 233, 0.12), rgba(17, 24, 39, 0.92));
+        border: 1px solid rgba(56, 189, 248, 0.24);
+        border-radius: 26px;
+        padding: 24px;
+        margin-bottom: 24px;
+        box-shadow: var(--shadow-card);
+    }
+
+    .analysis-panel h3 {
+        margin-top: 8px;
+        margin-bottom: 14px;
+        font-size: 1.35rem;
+        color: var(--text-main);
+    }
+
+    .analysis-panel p {
+        color: var(--text-muted);
+        line-height: 1.8;
+        font-size: 1rem;
+        max-width: 1100px;
+    }
+
+    /* =========================================================
+   FASE 10.4 - PANEL DE ANÁLISIS AUTOMÁTICO
+   ========================================================= */
+
+    .analysis-panel {
+        width: 100%;
+        background: linear-gradient(135deg,
+                rgba(56, 189, 248, 0.12),
+                rgba(17, 24, 39, 0.94));
+        border: 1px solid rgba(56, 189, 248, 0.28);
+        border-radius: 26px;
+        padding: 26px;
+        margin: 0 0 24px 0;
+        box-shadow: var(--shadow-card);
+    }
+
+    .analysis-panel .section-label {
+        display: inline-block;
+        margin-bottom: 8px;
+    }
+
+    .analysis-panel h3 {
+        margin: 0 0 14px 0;
+        font-size: 1.35rem;
+        color: var(--text-main);
+    }
+
+    .analysis-panel p {
+        margin: 0;
+        color: var(--text-muted);
+        line-height: 1.8;
+        font-size: 1rem;
+        max-width: 1150px;
+    }
+
+    /* =========================================================
+   FASE 10.4 - PANEL DE ANÁLISIS AUTOMÁTICO FORZADO
+   ========================================================= */
+
+    main.page-container section.analysis-panel {
+        display: block !important;
+        width: 100% !important;
+        background: linear-gradient(135deg,
+                rgba(56, 189, 248, 0.16),
+                rgba(17, 24, 39, 0.96)) !important;
+        border: 1px solid rgba(56, 189, 248, 0.32) !important;
+        border-radius: 26px !important;
+        padding: 26px !important;
+        margin: 0 0 24px 0 !important;
+        box-shadow: 0 20px 45px rgba(15, 23, 42, 0.45) !important;
+    }
+
+    main.page-container section.analysis-panel .section-label {
+        display: inline-block !important;
+        margin-bottom: 8px !important;
+        color: #38bdf8 !important;
+    }
+
+    main.page-container section.analysis-panel h3 {
+        margin: 0 0 14px 0 !important;
+        font-size: 1.35rem !important;
+        color: #f8fafc !important;
+    }
+
+    main.page-container section.analysis-panel p {
+        margin: 0 !important;
+        color: #94a3b8 !important;
+        line-height: 1.8 !important;
+        font-size: 1rem !important;
+        max-width: 1150px !important;
+    }
+
+    /* =========================================================
+   FASE 10.5 - RANKING GLOBAL DE PAÍSES
+   ========================================================= */
+
+    .ranking-panel {
+        margin-bottom: 24px;
+    }
+
+    .ranking-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .ranking-item {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 16px;
+        padding: 16px 18px;
+        border-radius: 18px;
+        background: rgba(31, 41, 55, 0.72);
+        border: 1px solid rgba(148, 163, 184, 0.16);
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .ranking-item:hover {
+        transform: translateY(-2px);
+        border-color: rgba(56, 189, 248, 0.42);
+        background: rgba(31, 41, 55, 0.95);
+    }
+
+    .ranking-position {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        background: rgba(56, 189, 248, 0.14);
+        color: #38bdf8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+    }
+
+    .ranking-main {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .ranking-main strong {
+        color: var(--text-main);
+        font-size: 1rem;
+    }
+
+    .ranking-main span {
+        color: var(--text-muted);
+        font-size: 0.86rem;
+    }
+
+    .ranking-metrics {
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .ranking-metrics strong {
+        color: var(--text-main);
+        font-size: 1rem;
+    }
+
+    .ranking-metrics span {
+        color: var(--text-muted);
+        font-size: 0.86rem;
+    }
+
+    .ranking-empty {
+        color: var(--text-muted);
+        line-height: 1.6;
+    }
+
+    @media (max-width: 720px) {
+        .ranking-item {
+            grid-template-columns: 1fr;
+            align-items: flex-start;
+        }
+
+        .ranking-metrics {
+            text-align: left;
+        }
+    }
+
+    /* =========================================================
+   MAPA PRINCIPAL + COLUMNAS 3D EN AZURE MAPS
+   ========================================================= */
+
+    .map-container {
+        width: 100%;
+        height: 540px;
+        min-height: 540px;
+        border-radius: 24px;
+        overflow: hidden;
+        background: #dbe4ea;
+        position: relative;
+    }
+
+    .dashboard-chart-container {
+        position: relative;
+        width: 100%;
+        height: 470px;
+        margin-top: 18px;
+        padding: 28px 24px 22px 24px;
+        border-radius: 22px;
+        background: rgba(2, 6, 23, 0.45);
+        border: 1px dashed rgba(148, 163, 184, 0.25);
+    }
+
+    .dashboard-chart-container canvas {
+        display: block;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .sales-3d-marker {
+        width: 92px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        pointer-events: auto;
+        user-select: none;
+        cursor: pointer;
+    }
+
+    .sales-3d-value {
+        margin-bottom: 8px;
+        padding: 4px 9px;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.92);
+        color: #e2e8f0;
+        font-size: 0.76rem;
+        font-weight: 700;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.28);
+        line-height: 1;
+    }
+
+    .sales-3d-code {
+        margin-top: 8px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.95);
+        color: #f8fafc;
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        line-height: 1;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.24);
+    }
+
+    .sales-3d-column-wrap {
+        position: relative;
+        width: 44px;
+        height: var(--bar-height);
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        perspective: 800px;
+    }
+
+    .sales-3d-column {
+        position: relative;
+        width: 28px;
+        height: var(--bar-height);
+        transform-style: preserve-3d;
+    }
+
+    .sales-3d-front,
+    .sales-3d-side,
+    .sales-3d-top {
+        position: absolute;
+        border-radius: 6px;
+    }
+
+    .sales-3d-front {
+        left: 0;
+        bottom: 0;
+        width: 28px;
+        height: 100%;
+    }
+
+    .sales-3d-side {
+        right: -10px;
+        bottom: 4px;
+        width: 12px;
+        height: 100%;
+        transform: skewY(-40deg);
+        transform-origin: left bottom;
+        border-radius: 4px;
+    }
+
+    .sales-3d-top {
+        top: -10px;
+        left: 3px;
+        width: 28px;
+        height: 12px;
+        transform: skewX(-50deg);
+        transform-origin: left bottom;
+        border-radius: 4px;
+    }
+
+    .sales-3d-marker.positive .sales-3d-front {
+        background: linear-gradient(180deg,
+                #86efac 0%,
+                #22c55e 32%,
+                #15803d 100%);
+        box-shadow:
+            inset 0 3px 6px rgba(255, 255, 255, 0.32),
+            inset 0 -6px 10px rgba(0, 0, 0, 0.2),
+            0 16px 28px rgba(34, 197, 94, 0.28);
+    }
+
+    .sales-3d-marker.positive .sales-3d-side {
+        background: linear-gradient(180deg,
+                #4ade80 0%,
+                #15803d 100%);
+        box-shadow: inset -3px 0 8px rgba(0, 0, 0, 0.22);
+    }
+
+    .sales-3d-marker.positive .sales-3d-top {
+        background: linear-gradient(180deg,
+                #dcfce7 0%,
+                #4ade80 100%);
+    }
+
+    .sales-3d-marker.negative .sales-3d-front {
+        background: linear-gradient(180deg,
+                #fca5a5 0%,
+                #ef4444 32%,
+                #b91c1c 100%);
+        box-shadow:
+            inset 0 3px 6px rgba(255, 255, 255, 0.28),
+            inset 0 -6px 10px rgba(0, 0, 0, 0.24),
+            0 16px 28px rgba(239, 68, 68, 0.28);
+    }
+
+    .sales-3d-marker.negative .sales-3d-side {
+        background: linear-gradient(180deg,
+                #f87171 0%,
+                #b91c1c 100%);
+        box-shadow: inset -3px 0 8px rgba(0, 0, 0, 0.22);
+    }
+
+    .sales-3d-marker.negative .sales-3d-top {
+        background: linear-gradient(180deg,
+                #fee2e2 0%,
+                #f87171 100%);
+    }
+
+    .sales-3d-marker:hover .sales-3d-front,
+    .sales-3d-marker:hover .sales-3d-side,
+    .sales-3d-marker:hover .sales-3d-top {
+        filter: brightness(1.06);
+    }
+
+    .placeholder-content {
+        width: 100%;
+        height: 100%;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        text-align: center;
+        color: #94a3b8;
+        padding: 24px;
+    }
+
+    /* =========================================================
+   COLUMNAS 3D SOBRE MAPA PRINCIPAL
+   ========================================================= */
+
+    .map-container {
+        width: 100% !important;
+        height: 540px !important;
+        min-height: 540px !important;
+        border-radius: 22px !important;
+        overflow: hidden !important;
+        background: #e5e7eb !important;
+    }
+
+    .sales-3d-marker {
+        width: 78px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        pointer-events: auto;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .sales-3d-value {
+        margin-bottom: 6px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.95);
+        color: #f8fafc;
+        font-size: 0.72rem;
+        font-weight: 800;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+    }
+
+    .sales-3d-code {
+        margin-top: 6px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.95);
+        color: #f8fafc;
+        font-size: 0.76rem;
+        font-weight: 900;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.24);
+    }
+
+    .sales-3d-column {
+        width: 30px;
+        position: relative;
+        transform: skewX(-8deg);
+        transform-origin: bottom center;
+    }
+
+    .sales-3d-column-face {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 30px;
+        height: 100%;
+        border-radius: 7px 7px 4px 4px;
+    }
+
+    .sales-3d-column-side {
+        position: absolute;
+        bottom: 4px;
+        right: -10px;
+        width: 12px;
+        height: 100%;
+        transform: skewY(-36deg);
+        transform-origin: left bottom;
+        border-radius: 4px;
+    }
+
+    .sales-3d-column-top {
+        position: absolute;
+        top: -9px;
+        left: 3px;
+        width: 30px;
+        height: 12px;
+        transform: skewX(-45deg);
+        transform-origin: left bottom;
+        border-radius: 5px;
+    }
+
+    .sales-3d-marker.positive .sales-3d-column-face {
+        background: linear-gradient(180deg, #86efac, #22c55e 45%, #15803d);
+        box-shadow:
+            inset 0 3px 6px rgba(255, 255, 255, 0.35),
+            inset 0 -6px 10px rgba(0, 0, 0, 0.26),
+            0 15px 30px rgba(34, 197, 94, 0.28);
+    }
+
+    .sales-3d-marker.positive .sales-3d-column-side {
+        background: linear-gradient(180deg, #4ade80, #166534);
+    }
+
+    .sales-3d-marker.positive .sales-3d-column-top {
+        background: linear-gradient(180deg, #dcfce7, #4ade80);
+    }
+
+    .sales-3d-marker.negative .sales-3d-column-face {
+        background: linear-gradient(180deg, #fca5a5, #ef4444 45%, #991b1b);
+        box-shadow:
+            inset 0 3px 6px rgba(255, 255, 255, 0.3),
+            inset 0 -6px 10px rgba(0, 0, 0, 0.3),
+            0 15px 30px rgba(239, 68, 68, 0.28);
+    }
+
+    .sales-3d-marker.negative .sales-3d-column-side {
+        background: linear-gradient(180deg, #f87171, #991b1b);
+    }
+
+    .sales-3d-marker.negative .sales-3d-column-top {
+        background: linear-gradient(180deg, #fee2e2, #f87171);
+    }
+}
