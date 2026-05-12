@@ -117,6 +117,4 @@ STATICFILES_DIRS = [
 # Campo automático por defecto para modelos
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# API Key de Azure Maps.
-# En desarrollo puede quedar vacía, pero luego la pondremos en un archivo .env.
-AZURE_MAPS_KEY = config("AZURE_MAPS_KEY", default="tu_api_key_aqui")
+AZURE_MAPS_KEY = config("AZURE_MAPS_KEY", default="")
