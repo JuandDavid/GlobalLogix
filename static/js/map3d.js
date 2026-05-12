@@ -81,24 +81,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     Esto asegura que el mapa nunca quede sin marcadores.
                 */
                 const bubbleLayer = new atlas.layer.BubbleLayer(dataSource, 'sales-bubble-layer', {
-                    radius: [
-                        'interpolate',
-                        ['linear'],
-                        ['get', 'total_sales'],
-                        0, 10,
-                        150000, 16,
-                        300000, 24,
-                        450000, 32
-                    ],
-                    color: [
-                        'case',
-                        ['>=', ['get', 'growth'], 0],
-                        'rgba(34, 197, 94, 0.75)',
-                        'rgba(239, 68, 68, 0.75)'
-                    ],
-                    strokeColor: '#ffffff',
-                    strokeWidth: 2,
-                    opacity: 0.85
+                    radius: 1,
+                    color: 'rgba(0, 0, 0, 0)',
+                    strokeColor: 'rgba(0, 0, 0, 0)',
+                    strokeWidth: 0,
+                    opacity: 0
                 });
 
                 const symbolLayer = new atlas.layer.SymbolLayer(dataSource, 'country-symbol-layer', {
@@ -115,17 +102,16 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 });
 
-                map.layers.add([bubbleLayer, symbolLayer]);
+                map.layers.add([bubbleLayer]);
 
-                /*
-                    COLUMNAS 3D VISUALES.
-                    Van encima del mapa, pero no eliminan las burbujas.
-                */
+                /* COLUMNAS 3D VISUALES.
+Cada país se representa con una barra vertical.
+La altura depende de las ventas totales del país.
+*/
                 filteredFeatures.forEach(function (feature) {
                     try {
                         const properties = feature.properties;
                         const coordinates = feature.geometry.coordinates;
-
                         const totalSales = Number(properties.total_sales || 0);
 
                         let growthValue = Number(
@@ -136,8 +122,8 @@ document.addEventListener('DOMContentLoaded', function () {
                             growthValue = 0;
                         }
 
-                        const minHeight = 40;
-                        const maxHeight = 135;
+                        const minHeight = 45;
+                        const maxHeight = 170;
 
                         let barHeight = minHeight;
 
@@ -151,21 +137,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
                         const markerElement = document.createElement('div');
                         markerElement.className = `sales-3d-marker ${trendClass}`;
+                        markerElement.style.setProperty('--bar-height', `${barHeight}px`);
+
                         markerElement.innerHTML = `
-                            <div class="sales-3d-value">
-                                ${formatCompact(totalSales)}
-                            </div>
+            <div class="sales-3d-value">${formatCompact(totalSales)}</div>
 
-                            <div class="sales-3d-column" style="height: ${barHeight}px;">
-                                <div class="sales-3d-column-face"></div>
-                                <div class="sales-3d-column-side"></div>
-                                <div class="sales-3d-column-top"></div>
-                            </div>
+            <div class="sales-3d-column">
+                <div class="sales-3d-column-face"></div>
+                <div class="sales-3d-column-side"></div>
+                <div class="sales-3d-column-top"></div>
+            </div>
 
-                            <div class="sales-3d-code">
-                                ${properties.code}
-                            </div>
-                        `;
+            <div class="sales-3d-code">${properties.code}</div>
+        `;
 
                         const marker = new atlas.HtmlMarker({
                             position: coordinates,
@@ -182,7 +166,15 @@ document.addEventListener('DOMContentLoaded', function () {
                                 currentPopup.close();
                             }
 
-                            currentPopup = createPopup(map, properties, coordinates, totalSales, growthValue, barHeight);
+                            currentPopup = createPopup(
+                                map,
+                                properties,
+                                coordinates,
+                                totalSales,
+                                growthValue,
+                                barHeight
+                            );
+
                             currentPopup.open(map);
                         });
                     } catch (markerError) {
