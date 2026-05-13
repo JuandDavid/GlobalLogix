@@ -108,7 +108,7 @@ USE_TZ = True
 # Archivos estáticos: CSS, JS e imágenes
 STATIC_URL = "static/"
 
-AZURE_MAPS_KEY = "PEGA_AQUI_TU_AZURE_MAPS_KEY"
+AZURE_MAPS_KEY = config("AZURE_MAPS_KEY", default="")
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
@@ -116,5 +116,3 @@ STATICFILES_DIRS = [
 
 # Campo automático por defecto para modelos
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-AZURE_MAPS_KEY = config("AZURE_MAPS_KEY", default="")
