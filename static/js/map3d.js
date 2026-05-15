@@ -68,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     let currentPopup = null;
+    const markerRefs = [];
 
     map.events.add("ready", function () {
         map.resize();
@@ -100,16 +101,14 @@ document.addEventListener("DOMContentLoaded", function () {
                         const properties = feature.properties;
                         const coordinates = feature.geometry.coordinates;
                         const totalSales = Number(properties.total_sales || 0);
+                        const lng = coordinates[0];
+                        const lat = coordinates[1];
 
                         let growthValue = Number(String(properties.growth || 0).replace(",", "."));
+                        if (Number.isNaN(growthValue)) growthValue = 0;
 
-                        if (Number.isNaN(growthValue)) {
-                            growthValue = 0;
-                        }
-
-                        const minHeight = 18;
-                        const maxHeight = 120;
-
+                        const minHeight = 12;
+                        const maxHeight = 85;
                         let barHeight = minHeight;
 
                         if (maxSales > 0) {
@@ -133,12 +132,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         map.markers.add(marker);
 
+                        markerRefs.push({
+                            marker: marker,
+                            markerElement: markerElement,
+                            lat: lat,
+                            lng: lng,
+                            code: properties.code
+                        });
+
                         markerElement.addEventListener("click", function (event) {
                             event.stopPropagation();
 
-                            if (currentPopup) {
-                                currentPopup.close();
-                            }
+                            if (currentPopup) currentPopup.close();
 
                             currentPopup = createPopup(
                                 properties,
@@ -149,26 +154,121 @@ document.addEventListener("DOMContentLoaded", function () {
                             );
 
                             currentPopup.open(map);
+
+                            setTimeout(function () {
+                                bringPopupsToFront();
+                            }, 0);
                         });
                     } catch (markerError) {
                         console.error("Error creando barra 3D:", markerError);
                     }
                 });
 
+                function updateZIndexes() {
+                    const orderedRefs = markerRefs.map(function (ref) {
+                        let pixel = null;
+
+                        try {
+                            pixel = map.positionsToPixels([[ref.lng, ref.lat]])[0];
+                        } catch (error) {
+                            pixel = null;
+                        }
+
+                        const screenY = pixel ? pixel[1] : 0;
+
+                        return {
+                            ref: ref,
+                            screenY: screenY
+                        };
+                    });
+
+                    orderedRefs.sort(function (a, b) {
+                        return a.screenY - b.screenY;
+                    });
+
+                    orderedRefs.forEach(function (item, index) {
+                        const ref = item.ref;
+                        const zIndex = 100 + index;
+
+                        const container =
+                            ref.markerElement.closest(".maplibregl-marker") ||
+                            ref.markerElement.closest(".azure-maps-marker") ||
+                            ref.markerElement.parentElement;
+
+                        if (container) {
+                            container.style.position = "absolute";
+                            container.style.zIndex = String(zIndex);
+                            container.style.pointerEvents = "auto";
+                        }
+
+                        ref.markerElement.style.zIndex = String(zIndex);
+                        ref.markerElement.style.opacity = "1";
+
+                        const visualWrapper = ref.markerElement.querySelector(".bar-visual-wrapper");
+
+                        if (!visualWrapper) return;
+
+                        visualWrapper.dataset.mapScale = "1";
+
+                        if (!visualWrapper.dataset.hovered) {
+                            visualWrapper.style.transform = "scale(1)";
+                        }
+                    });
+
+                    bringPopupsToFront();
+                }
+
+                function bringPopupsToFront() {
+                    const markerContainers = mapContainer.querySelectorAll(
+                        ".maplibregl-marker, .azure-maps-marker, [class*='marker']"
+                    );
+
+                    markerContainers.forEach(function (markerContainer) {
+                        if (markerContainer.querySelector(".sales-3d-marker")) {
+                            markerContainer.style.zIndex = "100";
+                        }
+                    });
+
+                    const popupElements = document.querySelectorAll(
+                        ".atlas-popup, .atlas-popup-content, .atlas-popup-container, [class*='popup']"
+                    );
+
+                    popupElements.forEach(function (popupElement) {
+                        popupElement.style.position = "absolute";
+                        popupElement.style.zIndex = "999999";
+                    });
+
+                    const popupContents = document.querySelectorAll(".atlas-popup-content");
+
+                    popupContents.forEach(function (popupContent) {
+                        popupContent.style.position = "relative";
+                        popupContent.style.zIndex = "1000000";
+                    });
+                }
+
+                map.events.add("move", updateZIndexes);
+                map.events.add("rotate", updateZIndexes);
+                map.events.add("pitch", updateZIndexes);
+                map.events.add("moveend", updateZIndexes);
+                map.events.add("render", updateZIndexes);
+
                 map.events.add("click", function () {
-                    if (currentPopup) {
-                        currentPopup.close();
-                    }
+                    if (currentPopup) currentPopup.close();
                 });
+
+                updateZIndexes();
 
                 setTimeout(function () {
                     map.resize();
+
                     map.setCamera({
                         center: [-20, 18],
                         zoom: 1.45,
                         pitch: 0,
                         bearing: 0
                     });
+
+                    updateZIndexes();
                 }, 600);
             })
             .catch(function (error) {
@@ -185,7 +285,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function create3DBarMarker(config) {
         const marker = document.createElement("div");
-        marker.style.width = "56px";
+        marker.className = "sales-3d-marker";
+        marker.style.width = "38px";
         marker.style.display = "flex";
         marker.style.alignItems = "flex-end";
         marker.style.justifyContent = "center";
@@ -193,173 +294,183 @@ document.addEventListener("DOMContentLoaded", function () {
         marker.style.userSelect = "none";
         marker.style.pointerEvents = "auto";
         marker.style.overflow = "visible";
+        marker.style.position = "relative";
 
         const visualWrapper = document.createElement("div");
-        visualWrapper.style.width = "56px";
+        visualWrapper.className = "bar-visual-wrapper";
+        visualWrapper.style.width = "38px";
         visualWrapper.style.display = "flex";
         visualWrapper.style.flexDirection = "column";
         visualWrapper.style.alignItems = "center";
         visualWrapper.style.justifyContent = "flex-end";
         visualWrapper.style.transformOrigin = "center bottom";
         visualWrapper.style.transition = "transform 140ms ease, filter 140ms ease";
+        visualWrapper.style.overflow = "visible";
+        visualWrapper.style.position = "relative";
+        visualWrapper.dataset.mapScale = "1";
 
-        // Número de ventas arriba
         const valueLabel = document.createElement("div");
         valueLabel.textContent = formatCompact(config.totalSales);
-        valueLabel.style.marginBottom = "5px";
+        valueLabel.style.marginBottom = "6px";
         valueLabel.style.padding = "4px 8px";
         valueLabel.style.borderRadius = "999px";
-        valueLabel.style.background = "rgba(15, 23, 42, 0.95)";
-        valueLabel.style.color = "#f8fafc";
+        valueLabel.style.background = "rgba(15,23,42,0.95)";
+        valueLabel.style.color = "#ffffff";
         valueLabel.style.fontSize = "11px";
         valueLabel.style.fontWeight = "800";
         valueLabel.style.lineHeight = "1";
         valueLabel.style.border = "1px solid rgba(255,255,255,0.14)";
-        valueLabel.style.boxShadow = "0 5px 10px rgba(0,0,0,0.20)";
+        valueLabel.style.boxShadow = "0 5px 10px rgba(0,0,0,0.22)";
         valueLabel.style.whiteSpace = "nowrap";
+        valueLabel.style.position = "relative";
+        valueLabel.style.zIndex = "10";
+        valueLabel.style.pointerEvents = "none";
 
-        // Contenedor de la barra
-        const barScene = document.createElement("div");
-        barScene.style.position = "relative";
-        barScene.style.width = "24px";
-        barScene.style.height = `${config.barHeight}px`;
-        barScene.style.display = "flex";
-        barScene.style.alignItems = "flex-end";
-        barScene.style.justifyContent = "center";
-        barScene.style.overflow = "visible";
+        const W = 38;
+        const H = config.barHeight;
+        const rx = W / 2;
+        const ry = Math.round(rx * 0.36);
+        const uid = Math.random().toString(36).slice(2, 8);
+        const bodyColor = config.colors.body;
 
-        // Sombra sobre el mapa
-        const groundShadow = document.createElement("div");
-        groundShadow.style.position = "absolute";
-        groundShadow.style.left = "50%";
-        groundShadow.style.bottom = "-6px";
-        groundShadow.style.transform = "translateX(-50%)";
-        groundShadow.style.width = "24px";
-        groundShadow.style.height = "8px";
-        groundShadow.style.borderRadius = "50%";
-        groundShadow.style.background = "rgba(0, 0, 0, 0.20)";
-        groundShadow.style.filter = "blur(1.5px)";
-        groundShadow.style.zIndex = "0";
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", W);
+        svg.setAttribute("height", H + ry * 2);
+        svg.setAttribute("viewBox", `0 0 ${W} ${H + ry * 2}`);
+        svg.style.overflow = "visible";
+        svg.style.display = "block";
+        svg.style.marginBottom = "0";
+        svg.style.position = "relative";
+        svg.style.zIndex = "5";
 
-        // Cuerpo RECTO del cilindro, no cápsula
-        const barBody = document.createElement("div");
-        barBody.style.position = "absolute";
-        barBody.style.left = "50%";
-        barBody.style.bottom = "0";
-        barBody.style.transform = "translateX(-50%)";
-        barBody.style.width = "16px";
-        barBody.style.height = `${config.barHeight}px`;
-        barBody.style.borderRadius = "0";
-        barBody.style.overflow = "hidden";
-        barBody.style.zIndex = "2";
+        const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
 
-        /*
-            Esta es la clave:
-            cuerpo con lados rectos + degradado lateral.
-            Ya NO usamos border-radius gigante.
-        */
-        barBody.style.background = `
-        linear-gradient(
-            90deg,
-            rgba(0,0,0,0.34) 0%,
-            rgba(255,255,255,0.22) 18%,
-            rgba(255,255,255,0.08) 36%,
-            rgba(0,0,0,0.08) 68%,
-            rgba(0,0,0,0.30) 100%
-        ),
-        ${config.colors.body}
-    `;
+        const bodyGrad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+        bodyGrad.setAttribute("id", `bg-${uid}`);
+        bodyGrad.setAttribute("x1", "0%");
+        bodyGrad.setAttribute("y1", "0%");
+        bodyGrad.setAttribute("x2", "100%");
+        bodyGrad.setAttribute("y2", "0%");
 
-        barBody.style.boxShadow = `
-        inset -3px 0 5px rgba(0,0,0,0.30),
-        inset 2px 0 4px rgba(255,255,255,0.14),
-        0 5px 9px rgba(0,0,0,0.18)
-    `;
+        [
+            { off: "0%", c: "rgba(0,0,0,0.65)" },
+            { off: "10%", c: "rgba(0,0,0,0.30)" },
+            { off: "22%", c: "rgba(255,255,255,0.70)" },
+            { off: "32%", c: "rgba(255,255,255,0.25)" },
+            { off: "48%", c: "rgba(0,0,0,0.00)" },
+            { off: "68%", c: "rgba(0,0,0,0.30)" },
+            { off: "85%", c: "rgba(0,0,0,0.55)" },
+            { off: "100%", c: "rgba(0,0,0,0.70)" }
+        ].forEach(function (s) {
+            const st = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+            st.setAttribute("offset", s.off);
+            st.setAttribute("stop-color", s.c);
+            bodyGrad.appendChild(st);
+        });
 
-        // Franja de luz vertical, como en columnas 3D reales
-        const lightStripe = document.createElement("div");
-        lightStripe.style.position = "absolute";
-        lightStripe.style.top = "0";
-        lightStripe.style.left = "4px";
-        lightStripe.style.width = "3px";
-        lightStripe.style.height = "100%";
-        lightStripe.style.background = "rgba(255,255,255,0.22)";
-        lightStripe.style.filter = "blur(0.3px)";
-        lightStripe.style.zIndex = "3";
+        const topGrad = document.createElementNS("http://www.w3.org/2000/svg", "radialGradient");
+        topGrad.setAttribute("id", `tg-${uid}`);
+        topGrad.setAttribute("cx", "40%");
+        topGrad.setAttribute("cy", "38%");
+        topGrad.setAttribute("r", "60%");
+        topGrad.setAttribute("fx", "40%");
+        topGrad.setAttribute("fy", "38%");
 
-        // Sombra lateral derecha
-        const darkStripe = document.createElement("div");
-        darkStripe.style.position = "absolute";
-        darkStripe.style.top = "0";
-        darkStripe.style.right = "0";
-        darkStripe.style.width = "4px";
-        darkStripe.style.height = "100%";
-        darkStripe.style.background = "rgba(0,0,0,0.22)";
-        darkStripe.style.zIndex = "3";
+        [
+            { off: "0%", c: "rgba(255,255,255,0.90)" },
+            { off: "25%", c: "rgba(255,255,255,0.45)" },
+            { off: "55%", c: "rgba(0,0,0,0.00)" },
+            { off: "80%", c: "rgba(0,0,0,0.20)" },
+            { off: "100%", c: "rgba(0,0,0,0.50)" }
+        ].forEach(function (s) {
+            const st = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+            st.setAttribute("offset", s.off);
+            st.setAttribute("stop-color", s.c);
+            topGrad.appendChild(st);
+        });
 
-        // Tapa superior elíptica, como el ejemplo
-        const topCap = document.createElement("div");
-        topCap.style.position = "absolute";
-        topCap.style.left = "50%";
-        topCap.style.top = "-5px";
-        topCap.style.transform = "translateX(-50%)";
-        topCap.style.width = "20px";
-        topCap.style.height = "10px";
-        topCap.style.borderRadius = "50%";
-        topCap.style.zIndex = "5";
-        topCap.style.background = `
-        radial-gradient(
-            ellipse at 35% 30%,
-            rgba(255,255,255,0.45) 0%,
-            rgba(255,255,255,0.18) 28%,
-            rgba(0,0,0,0.04) 58%,
-            rgba(0,0,0,0.20) 100%
-        ),
-        ${config.colors.top}
-    `;
-        topCap.style.boxShadow = `
-        inset 0 -2px 3px rgba(0,0,0,0.26),
-        0 2px 4px rgba(0,0,0,0.16)
-    `;
+        const botGrad = document.createElementNS("http://www.w3.org/2000/svg", "radialGradient");
+        botGrad.setAttribute("id", `btg-${uid}`);
+        botGrad.setAttribute("cx", "40%");
+        botGrad.setAttribute("cy", "40%");
+        botGrad.setAttribute("r", "60%");
 
-        // Borde inferior elíptico, sutil
-        const bottomCap = document.createElement("div");
-        bottomCap.style.position = "absolute";
-        bottomCap.style.left = "50%";
-        bottomCap.style.bottom = "-5px";
-        bottomCap.style.transform = "translateX(-50%)";
-        bottomCap.style.width = "20px";
-        bottomCap.style.height = "10px";
-        bottomCap.style.borderRadius = "50%";
-        bottomCap.style.zIndex = "1";
-        bottomCap.style.background = `
-        linear-gradient(
-            90deg,
-            rgba(0,0,0,0.32) 0%,
-            rgba(255,255,255,0.08) 35%,
-            rgba(0,0,0,0.30) 100%
-        ),
-        ${config.colors.body}
-    `;
-        bottomCap.style.filter = "brightness(0.76)";
-        bottomCap.style.boxShadow = "0 2px 4px rgba(0,0,0,0.18)";
+        [
+            { off: "0%", c: "rgba(255,255,255,0.20)" },
+            { off: "40%", c: "rgba(0,0,0,0.10)" },
+            { off: "100%", c: "rgba(0,0,0,0.55)" }
+        ].forEach(function (s) {
+            const st = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+            st.setAttribute("offset", s.off);
+            st.setAttribute("stop-color", s.c);
+            botGrad.appendChild(st);
+        });
 
-        barBody.appendChild(lightStripe);
-        barBody.appendChild(darkStripe);
+        defs.appendChild(bodyGrad);
+        defs.appendChild(topGrad);
+        defs.appendChild(botGrad);
+        svg.appendChild(defs);
 
-        barScene.appendChild(groundShadow);
-        barScene.appendChild(bottomCap);
-        barScene.appendChild(barBody);
-        barScene.appendChild(topCap);
+        const baseEllipse = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+        baseEllipse.setAttribute("cx", rx);
+        baseEllipse.setAttribute("cy", H + ry);
+        baseEllipse.setAttribute("rx", rx);
+        baseEllipse.setAttribute("ry", ry);
+        baseEllipse.setAttribute("fill", bodyColor);
+        baseEllipse.setAttribute("opacity", "0.55");
 
-        // Código del país abajo
+        const baseOverlay = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+        baseOverlay.setAttribute("cx", rx);
+        baseOverlay.setAttribute("cy", H + ry);
+        baseOverlay.setAttribute("rx", rx);
+        baseOverlay.setAttribute("ry", ry);
+        baseOverlay.setAttribute("fill", `url(#btg-${uid})`);
+
+        const bodyRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        bodyRect.setAttribute("x", "0");
+        bodyRect.setAttribute("y", ry);
+        bodyRect.setAttribute("width", W);
+        bodyRect.setAttribute("height", H);
+        bodyRect.setAttribute("fill", bodyColor);
+
+        const bodyOverlay = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        bodyOverlay.setAttribute("x", "0");
+        bodyOverlay.setAttribute("y", ry);
+        bodyOverlay.setAttribute("width", W);
+        bodyOverlay.setAttribute("height", H);
+        bodyOverlay.setAttribute("fill", `url(#bg-${uid})`);
+
+        const topEllipseBase = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+        topEllipseBase.setAttribute("cx", rx);
+        topEllipseBase.setAttribute("cy", ry);
+        topEllipseBase.setAttribute("rx", rx);
+        topEllipseBase.setAttribute("ry", ry);
+        topEllipseBase.setAttribute("fill", bodyColor);
+
+        const topEllipseOverlay = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+        topEllipseOverlay.setAttribute("cx", rx);
+        topEllipseOverlay.setAttribute("cy", ry);
+        topEllipseOverlay.setAttribute("rx", rx);
+        topEllipseOverlay.setAttribute("ry", ry);
+        topEllipseOverlay.setAttribute("fill", `url(#tg-${uid})`);
+
+        svg.appendChild(baseEllipse);
+        svg.appendChild(baseOverlay);
+        svg.appendChild(bodyRect);
+        svg.appendChild(bodyOverlay);
+        svg.appendChild(topEllipseBase);
+        svg.appendChild(topEllipseOverlay);
+
         const codeLabel = document.createElement("div");
         codeLabel.textContent = config.code;
-        codeLabel.style.marginTop = "8px";
+        codeLabel.style.position = "absolute";
+        codeLabel.style.left = "50%";
+        codeLabel.style.bottom = "-26px";
+        codeLabel.style.transform = "translateX(-50%)";
         codeLabel.style.padding = "4px 7px";
         codeLabel.style.borderRadius = "999px";
-        codeLabel.style.background = "rgba(15, 23, 42, 0.95)";
-        codeLabel.style.color = "#f8fafc";
+        codeLabel.style.background = "rgba(15,23,42,0.95)";
+        codeLabel.style.color = "#ffffff";
         codeLabel.style.fontSize = "10px";
         codeLabel.style.fontWeight = "900";
         codeLabel.style.lineHeight = "1";
@@ -367,20 +478,25 @@ document.addEventListener("DOMContentLoaded", function () {
         codeLabel.style.border = "1px solid rgba(255,255,255,0.12)";
         codeLabel.style.boxShadow = "0 5px 10px rgba(0,0,0,0.18)";
         codeLabel.style.whiteSpace = "nowrap";
+        codeLabel.style.zIndex = "20";
+        codeLabel.style.pointerEvents = "none";
 
         visualWrapper.appendChild(valueLabel);
-        visualWrapper.appendChild(barScene);
+        visualWrapper.appendChild(svg);
         visualWrapper.appendChild(codeLabel);
-
         marker.appendChild(visualWrapper);
 
         marker.addEventListener("mouseenter", function () {
-            visualWrapper.style.transform = "scale(1.025)";
-            visualWrapper.style.filter = "brightness(1.04)";
+            const baseScale = Number(visualWrapper.dataset.mapScale || 1);
+            visualWrapper.dataset.hovered = "true";
+            visualWrapper.style.transform = `scale(${(baseScale * 1.06).toFixed(4)}) translateY(-3px)`;
+            visualWrapper.style.filter = "brightness(1.12)";
         });
 
         marker.addEventListener("mouseleave", function () {
-            visualWrapper.style.transform = "scale(1)";
+            const baseScale = Number(visualWrapper.dataset.mapScale || 1);
+            delete visualWrapper.dataset.hovered;
+            visualWrapper.style.transform = `scale(${baseScale.toFixed(4)})`;
             visualWrapper.style.filter = "brightness(1)";
         });
 
@@ -429,7 +545,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return new atlas.Popup({
             content: popupContent,
             position: coordinates,
-            pixelOffset: [0, -(barHeight + 35)],
+            pixelOffset: [0, -(barHeight + 45)],
             closeButton: true,
             fillColor: "#0f172a"
         });

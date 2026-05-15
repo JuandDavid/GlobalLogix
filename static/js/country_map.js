@@ -49,13 +49,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const map = new atlas.Map('countryDetailMap', {
-    center: [longitude, latitude],
-    zoom: 4,
-    pitch: 45,
-    bearing: 0,
-    style: 'road',
-    view: 'Auto',
-
+        center: [longitude, latitude],
+        zoom: 3.2,
+        pitch: 35,
+        bearing: 0,
+        style: 'grayscale_dark',
+        view: 'Auto',
+        showLogo: true,
+        showFeedbackLink: false,
         authOptions: {
             authType: 'subscriptionKey',
             subscriptionKey: window.AZURE_MAPS_KEY
@@ -83,11 +84,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
         dataSource.add(point);
 
+        const dynamicRadius = Math.max(
+            24,
+            Math.min(58, totalSales / 12000)
+        );
+
         const bubbleLayer = new atlas.layer.BubbleLayer(
             dataSource,
             'country-detail-bubble-layer',
             {
-                radius: 34,
+                radius: dynamicRadius,
                 color: growth >= 0 ? '#22c55e' : '#ef4444',
                 strokeColor: '#ffffff',
                 strokeWidth: 3,
@@ -211,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const popup = new atlas.Popup({
             content: popupContent,
             position: [longitude, latitude],
-            pixelOffset: [0, -30],
+            pixelOffset: [0, -(dynamicRadius + 12)],
             closeButton: true,
             fillColor: '#0f172a'
         });
@@ -223,8 +229,11 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(function () {
             map.setCamera({
                 center: [longitude, latitude],
-                zoom: 4,
-                pitch: 45
+                zoom: 5.4,
+                pitch: 55,
+                bearing: -18,
+                type: 'fly',
+                duration: 3200
             });
         }, 700);
     });
