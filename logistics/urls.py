@@ -32,4 +32,10 @@ urlpatterns = [
         views.dashboard_sales_by_country,
         name="dashboard_sales_by_country"
     ),
+    
+    path(
+        "api/countries/<str:code_iso>/sales-points/",
+        views.country_sales_points_api,
+        name="country_sales_points_api",
+    ),
 ]

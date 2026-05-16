@@ -52,8 +52,8 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     const map = new atlas.Map("map", {
-        center: [-20, 18],
-        zoom: 1.45,
+        center: [-75, 10],
+        zoom: 0.9,
         pitch: 0,
         bearing: 0,
         style: "road",
@@ -78,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (!response.ok) {
                     throw new Error("No se pudo obtener el GeoJSON de ventas.");
                 }
+
                 return response.json();
             })
             .then(function (data) {
@@ -105,7 +106,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         const lat = coordinates[1];
 
                         let growthValue = Number(String(properties.growth || 0).replace(",", "."));
-                        if (Number.isNaN(growthValue)) growthValue = 0;
+
+                        if (Number.isNaN(growthValue)) {
+                            growthValue = 0;
+                        }
 
                         const minHeight = 12;
                         const maxHeight = 85;
@@ -143,7 +147,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         markerElement.addEventListener("click", function (event) {
                             event.stopPropagation();
 
-                            if (currentPopup) currentPopup.close();
+                            if (currentPopup) {
+                                currentPopup.close();
+                            }
 
                             currentPopup = createPopup(
                                 properties,
@@ -164,88 +170,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 });
 
-                function updateZIndexes() {
-                    const orderedRefs = markerRefs.map(function (ref) {
-                        let pixel = null;
-
-                        try {
-                            pixel = map.positionsToPixels([[ref.lng, ref.lat]])[0];
-                        } catch (error) {
-                            pixel = null;
-                        }
-
-                        const screenY = pixel ? pixel[1] : 0;
-
-                        return {
-                            ref: ref,
-                            screenY: screenY
-                        };
-                    });
-
-                    orderedRefs.sort(function (a, b) {
-                        return a.screenY - b.screenY;
-                    });
-
-                    orderedRefs.forEach(function (item, index) {
-                        const ref = item.ref;
-                        const zIndex = 100 + index;
-
-                        const container =
-                            ref.markerElement.closest(".maplibregl-marker") ||
-                            ref.markerElement.closest(".azure-maps-marker") ||
-                            ref.markerElement.parentElement;
-
-                        if (container) {
-                            container.style.position = "absolute";
-                            container.style.zIndex = String(zIndex);
-                            container.style.pointerEvents = "auto";
-                        }
-
-                        ref.markerElement.style.zIndex = String(zIndex);
-                        ref.markerElement.style.opacity = "1";
-
-                        const visualWrapper = ref.markerElement.querySelector(".bar-visual-wrapper");
-
-                        if (!visualWrapper) return;
-
-                        visualWrapper.dataset.mapScale = "1";
-
-                        if (!visualWrapper.dataset.hovered) {
-                            visualWrapper.style.transform = "scale(1)";
-                        }
-                    });
-
-                    bringPopupsToFront();
-                }
-
-                function bringPopupsToFront() {
-                    const markerContainers = mapContainer.querySelectorAll(
-                        ".maplibregl-marker, .azure-maps-marker, [class*='marker']"
-                    );
-
-                    markerContainers.forEach(function (markerContainer) {
-                        if (markerContainer.querySelector(".sales-3d-marker")) {
-                            markerContainer.style.zIndex = "100";
-                        }
-                    });
-
-                    const popupElements = document.querySelectorAll(
-                        ".atlas-popup, .atlas-popup-content, .atlas-popup-container, [class*='popup']"
-                    );
-
-                    popupElements.forEach(function (popupElement) {
-                        popupElement.style.position = "absolute";
-                        popupElement.style.zIndex = "999999";
-                    });
-
-                    const popupContents = document.querySelectorAll(".atlas-popup-content");
-
-                    popupContents.forEach(function (popupContent) {
-                        popupContent.style.position = "relative";
-                        popupContent.style.zIndex = "1000000";
-                    });
-                }
-
                 map.events.add("move", updateZIndexes);
                 map.events.add("rotate", updateZIndexes);
                 map.events.add("pitch", updateZIndexes);
@@ -253,7 +177,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 map.events.add("render", updateZIndexes);
 
                 map.events.add("click", function () {
-                    if (currentPopup) currentPopup.close();
+                    if (currentPopup) {
+                        currentPopup.close();
+                        currentPopup = null;
+                    }
                 });
 
                 updateZIndexes();
@@ -264,12 +191,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     map.setCamera({
                         center: [-20, 18],
                         zoom: 1.45,
-                        pitch: 0,
-                        bearing: 0
+                        pitch: 10,
+                        bearing: -6,
+                        type: "fly",
+                        duration: 2800
                     });
 
                     updateZIndexes();
-                }, 600);
+                }, 700);
             })
             .catch(function (error) {
                 console.error("Error cargando datos del mapa:", error);
@@ -282,6 +211,90 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
             });
     });
+
+    function updateZIndexes() {
+        const orderedRefs = markerRefs.map(function (ref) {
+            let pixel = null;
+
+            try {
+                pixel = map.positionsToPixels([[ref.lng, ref.lat]])[0];
+            } catch (error) {
+                pixel = null;
+            }
+
+            const screenY = pixel ? pixel[1] : 0;
+
+            return {
+                ref: ref,
+                screenY: screenY
+            };
+        });
+
+        orderedRefs.sort(function (a, b) {
+            return a.screenY - b.screenY;
+        });
+
+        orderedRefs.forEach(function (item, index) {
+            const ref = item.ref;
+            const zIndex = 100 + index;
+
+            const container =
+                ref.markerElement.closest(".maplibregl-marker") ||
+                ref.markerElement.closest(".azure-maps-marker") ||
+                ref.markerElement.parentElement;
+
+            if (container) {
+                container.style.position = "absolute";
+                container.style.zIndex = String(zIndex);
+                container.style.pointerEvents = "auto";
+            }
+
+            ref.markerElement.style.zIndex = String(zIndex);
+            ref.markerElement.style.opacity = "1";
+
+            const visualWrapper = ref.markerElement.querySelector(".bar-visual-wrapper");
+
+            if (!visualWrapper) {
+                return;
+            }
+
+            visualWrapper.dataset.mapScale = "1";
+
+            if (!visualWrapper.dataset.hovered) {
+                visualWrapper.style.transform = "scale(1)";
+            }
+        });
+
+        bringPopupsToFront();
+    }
+
+    function bringPopupsToFront() {
+        const markerContainers = mapContainer.querySelectorAll(
+            ".maplibregl-marker, .azure-maps-marker, [class*='marker']"
+        );
+
+        markerContainers.forEach(function (markerContainer) {
+            if (markerContainer.querySelector(".sales-3d-marker")) {
+                markerContainer.style.zIndex = "100";
+            }
+        });
+
+        const popupElements = document.querySelectorAll(
+            ".atlas-popup, .atlas-popup-content, .atlas-popup-container, [class*='popup']"
+        );
+
+        popupElements.forEach(function (popupElement) {
+            popupElement.style.position = "absolute";
+            popupElement.style.zIndex = "999999";
+        });
+
+        const popupContents = document.querySelectorAll(".atlas-popup-content");
+
+        popupContents.forEach(function (popupContent) {
+            popupContent.style.position = "relative";
+            popupContent.style.zIndex = "1000000";
+        });
+    }
 
     function create3DBarMarker(config) {
         const marker = document.createElement("div");

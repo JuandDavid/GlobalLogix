@@ -82,6 +82,47 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+class SalesPoint(models.Model):
+    """
+    Representa un punto de venta, tienda, sucursal o ubicación
+    comercial dentro de un país.
+
+    Este modelo permitirá mostrar barras 3D internas en el mapa
+    de detalle de cada país.
+    """
+
+    country = models.ForeignKey(
+        Country,
+        on_delete=models.CASCADE,
+        related_name="sales_points",
+        verbose_name="País"
+    )
+
+    name = models.CharField(
+        max_length=150,
+        verbose_name="Nombre del punto de venta"
+    )
+
+    city = models.CharField(
+        max_length=100,
+        verbose_name="Ciudad"
+    )
+
+    latitude = models.FloatField(
+        verbose_name="Latitud"
+    )
+
+    longitude = models.FloatField(
+        verbose_name="Longitud"
+    )
+
+    class Meta:
+        verbose_name = "Punto de venta"
+        verbose_name_plural = "Puntos de venta"
+        ordering = ["country__name", "city", "name"]
+
+    def __str__(self):
+        return f"{self.name} - {self.city}, {self.country.code_iso}"
 
 class Sale(models.Model):
     """
@@ -98,6 +139,15 @@ class Sale(models.Model):
         related_name="sales",
         verbose_name="País"
     )
+    
+    sales_point = models.ForeignKey(
+    SalesPoint,
+    on_delete=models.SET_NULL,
+    null=True,
+    blank=True,
+    related_name="sales",
+    verbose_name="Punto de venta"
+   )
 
     product = models.ForeignKey(
         Product,
