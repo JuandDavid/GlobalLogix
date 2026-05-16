@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
         zoom: 3.2,
         pitch: 35,
         bearing: 0,
-        style: 'grayscale_dark',
+        style: 'road',
         view: 'Auto',
         showLogo: true,
         showFeedbackLink: false,

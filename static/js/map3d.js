@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
         zoom: 1.45,
         pitch: 0,
         bearing: 0,
-        style: "grayscale_light",
+        style: "road",
         language: "es-ES",
         view: "Auto",
         showLogo: true,
