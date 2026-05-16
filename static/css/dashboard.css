@@ -1212,7 +1212,6 @@ button:hover,
 }
 
 @media (max-width: 720px) {
-
     .summary-card,
     .panel,
     .info-panel,
@@ -1220,4 +1219,155 @@ button:hover,
     .ranking-panel {
         box-shadow: 0 10px 24px rgba(15, 23, 42, 0.09);
     }
+
+    .topbar {
+        padding: 20px 24px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+    }
+
+    .main-nav {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+}
+
+/* ================================
+   HEADER GLOBALLOGIX
+   ================================ */
+
+body .topbar {
+    width: 100% !important;
+    min-height: 96px !important;
+    padding: 24px 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 32px !important;
+    background: #ffffff !important;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.04) !important;
+}
+
+body .brand-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 18px !important;
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+body .brand-link,
+body .brand-link:visited,
+body .brand-link:hover,
+body .brand-link:active {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+body .brand-logo {
+    width: 64px !important;
+    height: 64px !important;
+    min-width: 64px !important;
+    border-radius: 18px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, #004f8c 0%, #0078d4 55%, #38bdf8 100%) !important;
+    color: #ffffff !important;
+    font-size: 1.05rem !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.04em !important;
+    box-shadow: 0 14px 30px rgba(0, 90, 158, 0.22) !important;
+    transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease !important;
+}
+
+body .brand-link:hover .brand-logo {
+    background: #0078d4 !important;
+    transform: translateY(-1px) scale(1.03) !important;
+    box-shadow: 0 18px 36px rgba(0, 120, 212, 0.28) !important;
+}
+
+body .brand-text h1 {
+    margin: 0 !important;
+    color: #0f172a !important;
+    font-size: 1.45rem !important;
+    font-weight: 900 !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.03em !important;
+}
+
+body .brand-text p {
+    margin: 6px 0 0 0 !important;
+    color: #64748b !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+}
+
+body .main-nav {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 14px !important;
+}
+
+body .main-nav .nav-pill {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 104px !important;
+    padding: 11px 22px !important;
+    border-radius: 999px !important;
+    background: linear-gradient(135deg, #005a9e 0%, #0078d4 48%, #38bdf8 100%) !important;
+    color: #ffffff !important;
+    font-size: 0.95rem !important;
+    font-weight: 800 !important;
+    text-decoration: none !important;
+    border: 1px solid rgba(0, 120, 212, 0.35) !important;
+    box-shadow: 0 12px 24px rgba(0, 90, 158, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.28) !important;
+    transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, filter 160ms ease !important;
+}
+
+body .main-nav .nav-pill:visited,
+body .main-nav .nav-pill:hover,
+body .main-nav .nav-pill:active {
+    color: #ffffff !important;
+    text-decoration: none !important;
+}
+
+body .main-nav .nav-pill:hover {
+    background: #0078d4 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 16px 30px rgba(0, 120, 212, 0.26) !important;
+}
+
+body .main-nav .nav-pill:hover {
+    background: linear-gradient(135deg, #004f8c 0%, #0078d4 42%, #60a5fa 100%) !important;
+    transform: translateY(-1px) !important;
+    filter: brightness(1.04) !important;
+    box-shadow: 0 16px 30px rgba(0, 120, 212, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.34) !important;
+}
+
+@media (max-width: 720px) {
+    body .topbar {
+        padding: 20px 24px !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 18px !important;
+    }
+
+    body .main-nav {
+        width: 100% !important;
+        justify-content: flex-start !important;
+        flex-wrap: wrap !important;
+    }
+
+    body .main-nav .nav-pill {
+        min-width: auto !important;
+        padding: 10px 18px !important;
+    }
+
+
 }

@@ -277,3 +277,88 @@ def dashboard_sales_by_country(request):
     }
 
     return JsonResponse(data)
+
+def country_sales_points_api(request, code_iso):
+    """
+    Endpoint JSON para obtener los puntos de venta internos de un país.
+
+    Devuelve cada punto de venta con sus coordenadas, ventas acumuladas,
+    número de órdenes y producto más vendido.
+    """
+
+    from decimal import Decimal
+
+    from django.db.models import Count, DecimalField, Sum
+    from django.db.models.functions import Coalesce
+    from django.http import JsonResponse
+    from django.shortcuts import get_object_or_404
+
+    from .models import Country, Sale, SalesPoint
+
+    country = get_object_or_404(
+        Country,
+        code_iso=code_iso.upper()
+    )
+
+    sales_points = (
+        SalesPoint.objects
+        .filter(country=country)
+        .annotate(
+            total_sales=Coalesce(
+                Sum("sales__total_amount"),
+                Decimal("0.00"),
+                output_field=DecimalField(max_digits=14, decimal_places=2),
+            ),
+            total_orders=Count("sales"),
+        )
+        .order_by("-total_sales", "city", "name")
+    )
+
+    points_data = []
+
+    for point in sales_points:
+        top_product_data = (
+            Sale.objects
+            .filter(sales_point=point)
+            .values("product__name")
+            .annotate(
+                total_quantity=Sum("quantity"),
+                total_amount=Sum("total_amount"),
+            )
+            .order_by("-total_quantity", "-total_amount")
+            .first()
+        )
+
+        top_product = None
+
+        if top_product_data:
+            top_product = top_product_data["product__name"]
+
+        points_data.append(
+            {
+                "id": point.id,
+                "name": point.name,
+                "city": point.city,
+                "country": country.name,
+                "country_code": country.code_iso,
+                "latitude": point.latitude,
+                "longitude": point.longitude,
+                "total_sales": float(point.total_sales),
+                "total_orders": point.total_orders,
+                "top_product": top_product,
+                "growth": None,
+            }
+        )
+
+    return JsonResponse(
+        {
+            "country": {
+                "id": country.id,
+                "name": country.name,
+                "code_iso": country.code_iso,
+                "latitude": country.latitude,
+                "longitude": country.longitude,
+            },
+            "points": points_data,
+        }
+    )

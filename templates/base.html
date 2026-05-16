@@ -9,24 +9,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Estilos propios -->
-    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}?v=104">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}?v=107">
 
     {% block extra_head %}{% endblock %}
 </head>
 <body>
 
-    <header class="top-navbar">
-        <div class="navbar-brand">
-            <div class="brand-icon">GL</div>
-            <div>
+    <header class="topbar">
+        <a href="{% url 'dashboard_home' %}" class="brand-link">
+            <div class="brand-logo">
+                GL
+            </div>
+
+            <div class="brand-text">
                 <h1>GlobalLogix</h1>
                 <p>Dashboard de logística internacional</p>
             </div>
-        </div>
+        </a>
 
-        <nav class="navbar-links">
-            <a href="{% url 'dashboard_home' %}">Dashboard</a>
-            <a href="/admin/">Admin</a>
+        <nav class="main-nav">
+            <a href="{% url 'dashboard_home' %}" class="nav-pill">
+                Dashboard
+            </a>
+
+            <a href="/admin/" class="nav-pill">
+                Admin
+            </a>
         </nav>
     </header>
 
